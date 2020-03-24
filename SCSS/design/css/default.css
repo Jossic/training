@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css?family=Arvo");
+@import url("https://fonts.googleapis.com/css?family=Liu+Jian+Mao+Cao");
+@import url("https://fonts.googleapis.com/css?family=Caveat");
+@import url("https://fonts.googleapis.com/css?family=Lobster");
+@import url("https://fonts.googleapis.com/css?family=Anton");
+/*Variables*/
+header {
+  background-color: #ccc;
+  font-family: "Caveat"; }
+
+.texte {
+  background: #e4b;
+  font-family: "Liu Jian Mao Cao";
+  font-size: 1.3em; }
+
+.red {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -ms--border-radius: 10px;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  background: red;
+  font-family: "lobster"; }
+
+.green {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -ms--border-radius: 10px;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  background: green;
+  font-family: "Arvo"; }
+
+footer {
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -ms--border-radius: 10px;
+  border-radius: 10px;
+  background: #e4b;
+  font-family: "Anton"; }
+
+body {
+  background-color: purple;
+  color: white; }
+
+/*# sourceMappingURL=default.css.map */

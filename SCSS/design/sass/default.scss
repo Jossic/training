@@ -1,0 +1,79 @@
+@mixin googleFonts($font) {
+  @import url("https://fonts.googleapis.com/css?family=#{$font}");
+}
+
+@include googleFonts(Arvo);
+@include googleFonts("Liu+Jian+Mao+Cao");
+@include googleFonts(Caveat);
+@include googleFonts(Lobster);
+@include googleFonts(Anton);
+
+@mixin center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+@mixin round($size) {
+  -moz-border-radius: $size;
+  -webkit-border-radius: $size;
+  -ms--border-radius: $size;
+  border-radius: $size;
+}
+
+/*Variables*/
+$primary: #ccc;
+$secondary: #e4b;
+$theme: purple;
+
+header {
+  background-color: $primary;
+  font-family: "Caveat";
+}
+
+.texte {
+  background: $secondary;
+  font-family: "Liu Jian Mao Cao";
+  font-size: 1.3em;
+}
+
+body {
+  @extend %theme;
+}
+
+.red {
+  @include round(10px);
+  @include center;
+  background: red;
+  font-family: "lobster";
+}
+
+.green {
+  @include round(10px);
+  @include center;
+  background: green;
+  font-family: "Arvo";
+}
+
+footer {
+  @include round(10px);
+  background: $secondary;
+  font-family: "Anton";
+}
+
+%theme {
+  @if ($theme==purple) {
+    background-color: $theme;
+    color: white;
+  }
+
+  @else if ($theme==black) {
+    background-color: $theme;
+    color: white;
+  }
+
+  @else {
+    background-color: white;
+    color: black;
+  }
+}

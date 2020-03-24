@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Title</title>
+  </head>
+  <body>
+    <!-- ENTETE -->
+    <header>
+      <nav class="nav navbar bg-dark sticky-top p-3">
+        <div class="container">
+          <img
+            class="d-block mx-auto"
+            src="https://believemy.com/uploads/2f3811b9174e35a2d77902ffd36a9a37_4dfb82dd429edb6a11a81ff74e9abfc4.png"
+            style="height: 30px"
+          />
+        </div>
+      </nav>
+    </header>
+
+    <!-- ICI : jumbotron -->
+    <div
+      class="jumbotron text-white"
+      style="background: center/cover url('https://believemy.com/uploads/126d05180ddf6f2ea67c8b669855bf89_e45c0e92710b43b3b938ed8fc4938f71.png')"
+    >
+      <div class="container">
+        <h1 class="display-4">Bienvenue</h1>
+        <p class="lead">
+          Le site Tesla vous permet de commander vos fusées et vos voitures,
+          même lorsque vous êtes dans votre canapé.
+          <span class="badge badge-success">Un conseiller est en ligne.</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- PREMIERE SECTION -->
+    <section>
+      <div class="container">
+        <!-- ICI : progress bar-->
+        <div class="progress">
+          <div
+            class="progress-bar progress-bar-striped bg-danger"
+            style="width: 43%;"
+          ></div>
+        </div>
+        <div class="alert alert-primary">
+          <!-- ICI : alerte -->
+          <div class="font-weight-bold">
+            Bienvenue sur Tesla. Ce site est en maintenance.
+            <hr />
+            <!-- ICI : les deux boutons -->
+            <div class="btn-group text-center col-lg-12">
+              <div class="btn btn-danger col-lg-6">Suivre les avancements</div>
+              <div class="btn btn-success col-lg-6">Nous contacter</div>
+            </div>
+          </div>
+        </div>
+        <nav aria-label="breadcrumb">
+          <!-- ICI : fil d'ariane -->
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Accueil </a></li>
+            <li
+              class="breadcrumb-item active text-secondary"
+              aria-current="page"
+            >
+              Maintenance
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </section>
+
+    <!-- DEUXIEME SECTION -->
+    <section>
+      <div class="container">
+        <!-- ICI : les cartes -->
+        <div class="card-deck">
+          <div class="card border border-secondary">
+            <img
+              class="card-img-top"
+              src="https://believemy.com/uploads/c7fe8837368024dc01e1845337f167e9_18fb807dabb97a3e4f920d1b0c9176b1.png"
+              alt="..."
+            />
+            <div class="card-body bg-secondary text-white">
+              <h5 class="card-title">Nouveautés</h5>
+              <p class="card-text">
+                Vous pourrez bientôt acheter des fusées pour aller sur la lune.
+              </p>
+            </div>
+          </div>
+
+          <div class="card border border-secondary">
+            <img
+              class="card-img-top"
+              src="https://believemy.com/uploads/c7fe8837368024dc01e1845337f167e9_18fb807dabb97a3e4f920d1b0c9176b1.png"
+              alt="..."
+            />
+            <div class="card-header bg-secondary text-white">Informations</div>
+            <div class="card-body bg-secondary text-white">
+              <h5 class="card-title">Nouveautés</h5>
+              <p class="card-text">
+                Les 30 premiers acheteurs de fusées partiront avec Elon Musk.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TROISIEME SECTION -->
+    <section class="bg-dark text-white p-5 mt-3 rounded">
+      <div style="width: 400px" class="mx-auto">
+        <h2>Contactez-nous</h2>
+        <!-- ICI : formulaire -->
+        <form action="">
+          <div class="form-group">
+            <label for="email">Adresse email</label>
+            <input
+              type="email"
+              name=""
+              id=""
+              class="form-control"
+              placeholder="Entre votre adresse mail"
+            /><small id="emailHelp" class="form-text text-muted"
+              >We'll never share your email with anyone else.</small
+            >
+          </div>
+          <div class="form-group">
+            <label for="">Message</label>
+            <textarea
+              class="form-control"
+              name=""
+              id=""
+              cols="30"
+              rows="4"
+            ></textarea>
+          </div>
+          <button type="submit" class="btn btn-outline-light">Submit</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ICI : pied de page -->
+    <footer class="bg-secondary p-3 font-weight-bold">
+      <div class="container">
+        2020 &copy; Tesla
+      </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

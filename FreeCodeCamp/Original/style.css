@@ -1,0 +1,15 @@
+@media (min-width: 1000px) {
+  html {
+    background-color: red;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.pricing {
+  border: 1px solid;
+  width: 30%;
+}
