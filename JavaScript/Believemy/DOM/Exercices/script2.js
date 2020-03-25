@@ -1,4 +1,8 @@
-let btn = document.querySelector("button");
-btn.addEventListener("click", start);
+function somme(nb) {
+  if (nb == 1) {
+    return 1;
+  }
+  return nb + somme(nb - 1);
+}
 
-function start() {}
+console.log(somme(5));
