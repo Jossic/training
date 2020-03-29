@@ -78,6 +78,7 @@ let btn = document.querySelector("button");
 let p = document.querySelector("p");
 let hidden = false;
 
+console.log(btn);
 p.style.display = "none";
 
 btn.addEventListener("click", () => {
