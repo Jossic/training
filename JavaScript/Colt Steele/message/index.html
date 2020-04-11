@@ -9,25 +9,42 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
         integrity="sha256-OweaP/Ic6rsV+lysfyS4h+LM6sRwuO3euTYfr6M124g=" crossorigin="anonymous" />
 
+    <style>
+        .row {
+            margin-top: 25vh;
+        }
+
+        h1 {
+            margin-top: 0;
+        }
+    </style>
+
     <title>Title</title>
 </head>
 
 <body>
 
     <div class="row">
-        <div class="col">
-            <div class="card-panel">
+        <div class="col s8 offset-s2">
+            <div id="message-show" class="card-panel hide">
+                <h1></h1>
+                <div><a href="./index.html">Créer votre propre message secret</a></div>
+            </div>
+            <div id="message-form" class="card-panel">
                 <form action="">
-                    <label for="">Enter your message</label>
+                    <label for="">Entrer votre message</label>
                     <input id="message-input" />
-                    <button class="btn">Create</button>
+                    <button class="btn">Créer</button>
                 </form>
             </div>
         </div>
     </div>
-    <div>
-        Partager ce lien
-        <input id="link-input">
+
+    <div id="link-form" class="card-panel hide">
+        <div>
+            Partager ce lien
+            <input id="link-input">
+        </div>
     </div>
     <script src="index.js"></script>
 </body>
