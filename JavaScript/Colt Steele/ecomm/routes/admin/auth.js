@@ -4,7 +4,7 @@ const { check, validationResult } = require('express-validator');
 const usersRepo = require('../../repositories/users');
 const signupTemplate = require('../../views/admin/auth/signup');
 const signinTemplate = require('../../views/admin/auth/signin');
-const { requireEmail, requirePassword, requirePasswordConfirmation } = require('./validators');
+const { requireEmail, requirePassword, requirePasswordConfirmation, requireEmailExists, requireValidPasswordForUser } = require('./validators');
 
 const router = express.Router();
 
@@ -37,44 +37,28 @@ router.get('/signout', (req, res) => {
 });
 
 router.get('/signin', (req, res) => {
-    res.send(signinTemplate());
+    res.send(signinTemplate({}));
 });
 
 router.post('/signin', [
-    check('email')
-        .trim()
-        .normalizeEmail()
-        .isEmail()
-        .withMessage('Email non valide')
-        .custom(async (email) => {
-            const user = await usersRepo.getOneBy({ email });
-            if (!user) {
-                throw new Error('Email non trouvé');
-            }
-        }),
-    check('password').trim()
-], async (req, res) => {
-    const errors = validationResult(req);
+    requireEmailExists,
+    requireValidPasswordForUser
 
-    const { email, password } = req.body;
+],
+    async (req, res) => {
+        const errors = validationResult(req);
 
-    const user = await usersRepo.getOneBy({ email });
+        if (!errors.isEmpty()) {
+            return res.send(signinTemplate({ errors }));
+        }
 
-    if (!user) {
-        return res.send('Email non reconnu');
-    }
+        const { email } = req.body;
 
-    const validPassword = await usersRepo.comparePasswords(
-        user.password,
-        password
-    );
-    if (!validPassword) {
-        return res.send('Mot de passe éronné');
-    }
+        const user = await usersRepo.getOneBy({ email });
 
-    req.session.userId = user.id;
+        req.session.userId = user.id;
 
-    res.send('Vous êtes connecté');
-});
+        res.send('Vous êtes connecté');
+    });
 
 module.exports = router;
