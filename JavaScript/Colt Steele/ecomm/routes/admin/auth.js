@@ -1,5 +1,4 @@
 const express = require('express');
-// const { check, validationResult } = require('express-validator');
 
 const { handleErrors } = require('./middlewares');
 const usersRepo = require('../../repositories/users');
@@ -25,7 +24,7 @@ router.post('/signup', [
 
         req.session.userId = user.id;
 
-        res.send('Compte crée');
+        res.redirect('/admin/products');
     });
 
 router.get('/signout', (req, res) => {
@@ -39,19 +38,16 @@ router.get('/signin', (req, res) => {
 
 router.post('/signin', [
     requireEmailExists,
-    requireValidPasswordForUser
-
-],
+    requireValidPasswordForUser],
     handleErrors(signinTemplate),
     async (req, res) => {
-
         const { email } = req.body;
 
         const user = await usersRepo.getOneBy({ email });
 
         req.session.userId = user.id;
 
-        res.send('Vous êtes connecté');
+        res.redirect('/admin/products');
     });
 
 module.exports = router;
