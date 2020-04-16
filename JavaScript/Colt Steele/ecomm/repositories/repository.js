@@ -1,8 +1,6 @@
 const fs = require('fs');
 const crypto = require('crypto');
 
-
-
 module.exports = class Repository {
     constructor(filename) {
         if (!filename) {
@@ -37,7 +35,9 @@ module.exports = class Repository {
 
 
     async writeAll(records) {
-        await fs.promises.writeFile(this.filename, JSON.stringify(records, null, 2));
+        await fs.promises.writeFile(
+            this.filename,
+            JSON.stringify(records, null, 2));
     }
 
     randomId() {

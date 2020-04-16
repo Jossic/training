@@ -7,6 +7,7 @@ module.exports = {
         .isLength({ min: 5, max: 50 })
         .withMessage('Ce champ doit comporter entre 5 et 50 caractères'),
     requirePrice: check('price')
+        .trim()
         .toFloat()
         .isFloat({ min: 1 })
         .withMessage('Ce champ doit être un nombre supérieur à 1'),
@@ -29,8 +30,8 @@ module.exports = {
         .trim()
         .isLength({ min: 4, max: 20 })
         .withMessage('Ce champ doit comprendre entre 4 et 24 caractères')
-        .custom((passwordConfirmation, { req }) => {
-            if (password !== passwordConfirmation) {
+        .custom(async (passwordConfirmation, { req }) => {
+            if (passwordConfirmation !== req.body.password) {
                 throw new Error('Les mots de passe doivent correspondre');
             }
         }),

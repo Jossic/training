@@ -1,14 +1,14 @@
 const layout = require('../layout');
 
 module.exports = ({ products }) => {
-    const renderedProducts = products
-        .map(product => {
-            return `
+  const renderedProducts = products
+    .map(product => {
+      return `
       <tr>
         <td>${product.title}</td>
         <td>${product.price}</td>
         <td>
-          <a href="">
+          <a href="/admin/products/${product.id}/edit">
             <button class="button is-link">
               Modifier
             </button>
@@ -19,11 +19,11 @@ module.exports = ({ products }) => {
         </td>
       </tr>
     `;
-        })
-        .join('');
+    })
+    .join('');
 
-    return layout({
-        content: `
+  return layout({
+    content: `
       <div class="control">
         <h1 class="subtitle">Products</h1>  
         <a href="/admin/products/new" class="button is-primary">Ajouter un produit</a>
@@ -42,5 +42,5 @@ module.exports = ({ products }) => {
         </tbody>
       </table>
     `
-    });
+  });
 };
