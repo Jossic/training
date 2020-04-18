@@ -16,6 +16,17 @@ app.post('/', (req, res) => {
 });
 
 
+app.get('/bmiCalculator', (req, res) => {
+    res.sendFile(__dirname + '/bmiCalculator.html');
+});
+
+
+app.post('/bmiCalculator', (req, res) => {
+
+    const result = parseFloat(req.body.weight) / parseFloat(req.body.height * req.body.height);
+    res.send(`Your BMI is : ${result} !`);
+});
+
 app.listen(3000, () => {
     console.log('Listening...');
 });
