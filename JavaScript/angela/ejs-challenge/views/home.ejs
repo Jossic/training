@@ -6,5 +6,5 @@
 
 <% posts.forEach((poste)=>{%>
 <h1><%- poste.title %></h1>
-<p><%- poste.post %></p>
+<p><%- poste.content.substring(0,99)+" ..." %> <a href="/posts/<%- poste.title %>">Read More</a> </p>
 <% }); %> <%- include("partials/footer"); -%>
