@@ -12,7 +12,6 @@ const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rho
 
 const app = express();
 
-const posts = [];
 
 app.set('view engine', 'ejs');
 
@@ -22,10 +21,29 @@ app.use(express.static("public"));
 
 mongoose.connect('mongodb://localhost:27017/blogDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
+const postSchema = {
+  title: String,
+  content: String
+};
+
+const Post = mongoose.model("Post", postSchema);
+
+
+
 
 app.get('/', (req, res) => {
 
-  res.render('Home', { homeStartingContent, posts });
+  Post.find({}, function (err, posts) {
+
+    res.render("home", {
+
+      startingContent: homeStartingContent,
+
+      posts: posts
+
+    });
+
+  })
 
 });
 
@@ -45,26 +63,40 @@ app.get('/compose', (req, res) => {
 });
 
 app.post('/compose', (req, res) => {
-  const post = {
+
+
+
+  const post = new Post({
     title: req.body.title,
     content: req.body.content
-  };
-  posts.push(post);
+  });
+  post.save(function (err) {
+
+    if (!err) {
+
+      res.redirect("/");
+
+    }
+
+  });
+
   res.redirect('/');
 
 });
 
-app.get('/posts/:postName', (req, res) => {
-  const reqPost = _.lowerCase(req.params.postName);
+app.get('/posts/:postId', (req, res) => {
 
-  posts.forEach((post) => {
-    const storedTitle = _.lowerCase(post.title);
-    if (storedTitle === reqPost) {
-      res.render('post', {
-        title: post.title,
-        content: post.content
-      });
-    }
+  const reqPost = _.lowerCase(req.params.postId);
+
+  Post.findOne({ _id: requestedPostId }, function (err, post) {
+
+    res.render("post", {
+
+      title: post.title,
+
+      content: post.content
+
+    });
   });
 });
 
