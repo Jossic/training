@@ -3,8 +3,15 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/fruitsDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const fruitSchema = new mongoose.Schema({
-    name: String,
-    rating: Number,
+    name: {
+        type: String,
+        required: [true, "Il faut mettre un nom"]
+    },
+    rating: {
+        type: Number,
+        min: 0,
+        max: 10
+    },
     review: String
 });
 
@@ -32,33 +39,6 @@ const person = new Person({
 
 // person.save();
 
-const orange = new Fruit({
-    name: "Orange",
-    score: 7,
-    review: "top"
-});
-
-const banana = new Fruit({
-    name: "Banana",
-    score: 9,
-    review: "Le meilleur"
-});
-
-const kiwi = new Fruit({
-    name: "Kiwi",
-    rating: 5,
-    review: "good"
-});
-
-// Fruit.insertMany([orange, kiwi, banana], (err) => {
-//     if (err) {
-//         console.log(err);
-//     } else {
-//         console.log("ok");
-//     }
-// }
-// );
-
 Fruit.find((err, fruits) => {
     if (err) {
         console.log(err);
@@ -69,6 +49,8 @@ Fruit.find((err, fruits) => {
 
     }
 })
+
+Fruit.updateOne()
 
 
 const insertDocuments = function (db, callback) {
