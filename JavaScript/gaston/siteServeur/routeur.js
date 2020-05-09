@@ -6,12 +6,18 @@ var router = express.Router();
 
 
 router.get('/', (req, res) => {
-    res.end('Accueil');
+    res.render('accueil.html.twig');
 });
 
-router.get('/hello', (req, res) => {
-    res.end('hello');
+router.get('/livres', (req, res) => {
+    res.render('livres/liste.html.twig');
 });
+
+router.get('/livres/:nom', (req, res) => {
+    console.log(req.params.nom);
+    res.render('livres/livre.html.twig', { nom: req.params.nom })
+}
+);
 
 router.use((req, res, suite) => {
     const error = new Error('Euhh vous allez ou la ?');

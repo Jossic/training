@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+
+{% block titre %}Liste des livres{% endblock %}
+{% block contenu %}
+
+     <table class="table text-center" id="tableauLivres">
+            <thead class="table table-dark text-center">
+                    <tr>
+                        <th>Titre</th>
+                        <th>Auteur</th>
+                        <th>Nombre de pages</th>
+                        <th colspan="2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><a href="/livres/Mon super livre">Mon super livre</a></td>
+                    <td>Moi même</td>
+                    <td>500</td>
+                    <td><button class="btn btn-warning" data-toggle="modal"
+                    data-target="#modifModal" onClick="modifierLivre(${i})" type="button">Modifier</button></td>
+                    <td><button class="btn btn-danger" onClick="supprimerLivre(${i})"type="button">Supprimer</button></td></tr>
+
+                    <tr>
+                    <td><a href="/livres/Mon super livre2">Mon super livre2</a></td>
+                    <td>Moi même</td>
+                    <td>550</td>
+                    <td><button class="btn btn-warning" data-toggle="modal"
+                    data-target="#modifModal" onClick="modifierLivre(${i})" type="button">Modifier</button></td>
+                    <td><button class="btn btn-danger" onClick="supprimerLivre(${i})"type="button">Supprimer</button></td></tr>
+                </tbody>
+            </table>
+            <button type="button" class="btn btn-success w-100" data-toggle="modal"
+                data-target="#exampleModal">Ajouter</button>
+
+
+ {% endblock %}
