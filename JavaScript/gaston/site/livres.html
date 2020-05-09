@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Modak&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Sigmar+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
     <title>Document</title>
 </head>
 
@@ -38,62 +39,106 @@
         </div>
     </nav>
 
-    <div class="container-fluid">
+    <div class="container">
         <h1 class="border border-dark m-2 p-2 rounded text-center p_bgColorBlue text-white">Liste des livres</h1>
         <div>
-            <table class="table table-light text-center">
+            <table class="table table-dark text-center" id="tableauLivres">
 
-                <tr>
-                    <th>Titre</th>
-                    <th>Auteur</th>
-                    <th>Nombre de pages</th>
-                    <th colspan="2">Actions</th>
-                </tr>
-                <tr>
-                    <td>Un livre</td>
-                    <td>Moi</td>
-                    <td>200</td>
-                    <td><button class="btn btn-warning" type="button">Modifier</button></td>
-                    <td><button class="btn btn-danger" type="button">Supprimer</button></td>
-                </tr>
-                <tr>
-                    <td>Un livre</td>
-                    <td>Moi</td>
-                    <td>200</td>
-                    <td><button class="btn btn-warning" type="button">Modifier</button></td>
-                    <td><button class="btn btn-danger" type="button">Supprimer</button></td>
-                </tr>
-                <tr>
-                    <td>Un livre</td>
-                    <td>Moi</td>
-                    <td>200</td>
-                    <td><button class="btn btn-warning" type="button">Modifier</button></td>
-                    <td><button class="btn btn-danger" type="button">Supprimer</button></td>
-                </tr>
-                <tr>
-                    <td>Un livre</td>
-                    <td>Moi</td>
-                    <td>200</td>
-                    <td><button class="btn btn-warning" type="button">Modifier</button></td>
-                    <td><button class="btn btn-danger" type="button">Supprimer</button></td>
-                </tr>
-                <tr>
-                    <td>Un livre</td>
-                    <td>Moi</td>
-                    <td>200</td>
-                    <td><button class="btn btn-warning" type="button">Modifier</button></td>
-                    <td><button class="btn btn-danger" type="button">Supprimer</button></td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Titre</th>
+                        <th>Auteur</th>
+                        <th>Nombre de pages</th>
+                        <th colspan="2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+
 
 
 
             </table>
-            <a href="" class="btn btn-success d-block">Ajouter</a>
+            <button type="button" class="btn btn-success w-100" data-toggle="modal"
+                data-target="#exampleModal">Ajouter</button>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ajouter un livre</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="ajoutForm">
+                            <div class="form-group">
+                                <label for="titre">Titre</label>
+                                <input type="text" class="form-control" id="titre" placeholder="Entrez un titre">
+                            </div>
+                            <div class="form-group">
+                                <label for="auteur">Auteur</label>
+                                <input type="text" class="form-control" id="auteur" placeholder="Entrez un auteur">
+                            </div>
+                            <div class="form-group">
+                                <label for="page">Nombre de pages</label>
+                                <input type="number" class="form-control" id="page"
+                                    placeholder="Entrez un nombre de pages">
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button type="submit" id="validationFormAjout" class="btn btn-primary">Envoyer mon
+                            livre</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modifModal" tabindex="-1" role="dialog" aria-labelledby="modifModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modifModalLabel">Modifier un livre</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="modifForm">
+                            <div class="form-group">
+                                <label for="titre">Titre</label>
+                                <input type="text" class="form-control" id="titre" placeholder="Entrez un titre">
+                            </div>
+                            <div class="form-group">
+                                <label for="auteur">Auteur</label>
+                                <input type="text" class="form-control" id="auteur" placeholder="Entrez un auteur">
+                            </div>
+                            <div class="form-group">
+                                <label for="page">Nombre de pages</label>
+                                <input type="number" class="form-control" id="page"
+                                    placeholder="Entrez un nombre de pages">
+                            </div>
+                            <input type="hidden" id="ids" value="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                        <button type="submit" id="validationFormModif" class="btn btn-primary">Envoyer mon
+                            livre</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
 
-
+    <script src="./javascript/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
