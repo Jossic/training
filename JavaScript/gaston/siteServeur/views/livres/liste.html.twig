@@ -13,7 +13,18 @@
                     </tr>
                 </thead>
                 <tbody>
+            {% for livre in livres %}
                 <tr>
+                    <td><a href="/livres/{{livre._id}}">{{livre.nom}}</a></td>
+                    <td>{{livre.auteur}}</td>
+                    <td>{{livre.pages}}</td>
+                    <td><button class="btn btn-warning" data-toggle="modal"
+                    data-target="#modifModal" onClick="modifierLivre(${i})" type="button">Modifier</button></td>
+                    <td><button class="btn btn-danger" onClick="supprimerLivre(${i})"type="button">Supprimer</button></td>
+                </tr>
+            {% endfor %}
+
+                {# <tr>
                     <td><a href="/livres/Mon super livre">Mon super livre</a></td>
                     <td>Moi même</td>
                     <td>500</td>
@@ -27,7 +38,7 @@
                     <td>550</td>
                     <td><button class="btn btn-warning" data-toggle="modal"
                     data-target="#modifModal" onClick="modifierLivre(${i})" type="button">Modifier</button></td>
-                    <td><button class="btn btn-danger" onClick="supprimerLivre(${i})"type="button">Supprimer</button></td></tr>
+                    <td><button class="btn btn-danger" onClick="supprimerLivre(${i})"type="button">Supprimer</button></td></tr> #}
                 </tbody>
             </table>
             <button type="button" class="btn btn-success w-100" data-toggle="modal"

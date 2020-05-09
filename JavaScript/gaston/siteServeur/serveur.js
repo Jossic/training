@@ -6,21 +6,7 @@ const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/biblio', { useNewUrlParser: true, useUnifiedTopology: true });
 
-const livreSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
-    nom: String,
-    auteur: String,
-    page: Number
-});
 
-const livreModel = mongoose.model('Livre', livreSchema);
-
-livreModel.find()
-    .exec()
-    .then(livres => {
-        console.log(livres)
-    })
-    .catch();
 
 
 
