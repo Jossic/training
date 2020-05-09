@@ -21,9 +21,16 @@ router.get('/livres', (req, res) => {
         });
 });
 
-router.get('/livres/:nom', (req, res) => {
-    console.log(req.params.nom);
-    res.render('livres/livre.html.twig', { nom: req.params.nom })
+router.get('/livres/:id', (req, res) => {
+    livreModel.findById(req.params.id)
+        .exec()
+        .then(livre => {
+            res.render('livres/livre.html.twig', { livre });
+        })
+        .catch(error => {
+            console.log(error)
+        });
+    // res.render('livres/livre.html.twig', {});
 }
 );
 
