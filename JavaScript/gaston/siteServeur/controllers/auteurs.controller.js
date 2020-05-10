@@ -65,6 +65,7 @@ exports.auteurSuppr = (req, res) => {
                 .exec()
                 .then(
                     auteurModel.remove({ _id: req.params.id })
+                        .where('nom').ne('anonyme')
                         .exec()
                         .then(res.redirect('/auteurs'))
                         .catch()
