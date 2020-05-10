@@ -1,48 +1,82 @@
 {% extends "base.html.twig" %}
 
-{% block titre %}Liste des livres{% endblock %}
+{% block titre %}Liste des livres
+{% endblock %}
 {% block contenu %}
 
-     <table class="table text-center" id="tableauLivres">
-            <thead class="table table-dark text-center">
-                    <tr>
-                        <th>Titre</th>
-                        <th>Auteur</th>
-                        <th>Nombre de pages</th>
-                        <th colspan="2">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-            {% for livre in livres %}
-                <tr>
-                    <td><a href="/livres/{{livre._id}}">{{livre.nom}}</a></td>
-                    <td>{{livre.auteur}}</td>
-                    <td>{{livre.pages}}</td>
-                    <td><button class="btn btn-warning" data-toggle="modal"
-                    data-target="#modifModal" onClick="modifierLivre(${i})" type="button">Modifier</button></td>
-                    <td><button class="btn btn-danger" onClick="supprimerLivre(${i})"type="button">Supprimer</button></td>
-                </tr>
-            {% endfor %}
-
-                {# <tr>
-                    <td><a href="/livres/Mon super livre">Mon super livre</a></td>
-                    <td>Moi même</td>
-                    <td>500</td>
-                    <td><button class="btn btn-warning" data-toggle="modal"
-                    data-target="#modifModal" onClick="modifierLivre(${i})" type="button">Modifier</button></td>
-                    <td><button class="btn btn-danger" onClick="supprimerLivre(${i})"type="button">Supprimer</button></td></tr>
-
-                    <tr>
-                    <td><a href="/livres/Mon super livre2">Mon super livre2</a></td>
-                    <td>Moi même</td>
-                    <td>550</td>
-                    <td><button class="btn btn-warning" data-toggle="modal"
-                    data-target="#modifModal" onClick="modifierLivre(${i})" type="button">Modifier</button></td>
-                    <td><button class="btn btn-danger" onClick="supprimerLivre(${i})"type="button">Supprimer</button></td></tr> #}
-                </tbody>
-            </table>
-            <button type="button" class="btn btn-success w-100" data-toggle="modal"
-                data-target="#exampleModal">Ajouter</button>
+	<table class="table text-center" id="tableauLivres">
+		<thead class="table table-dark text-center">
+			<tr>
+				<th>Titre</th>
+				<th>Auteur</th>
+				<th>Nombre de pages</th>
+				<th colspan="2">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for livre in livres %}
+				<tr>
+					<td>
+						<a href="/livres/{{livre._id}}">{{livre.nom}}</a>
+					</td>
+					<td>{{livre.auteur}}</td>
+					<td>{{livre.pages}}</td>
+					<td>
+						<button class="btn btn-warning" data-toggle="modal" data-target="#modifModal" onclick="modifierLivre(${i})" type="submit">Modifier</button>
+					</td>
+					<td>
+						<form action="/livres/delete/{{livre._id}}" method="post" onsubmit="return confirm('Supprimer le livre ?');">
+							<button class="btn btn-danger" onclick="" type="submit">Supprimer</button>
+						</form>
+					</td>
+				</tr>
+			{% endfor %}
 
 
- {% endblock %}
+		</tbody>
+	</table>
+	<button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#ajoutModal">Ajouter</button>
+
+
+	{# Modal ajout d'un livre #}
+	<div class="modal fade" id="ajoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Ajouter un livre</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="ajoutForm" method="POST" action="">
+						<div class="form-group">
+							<label for="titre">Titre</label>
+							<input type="text" class="form-control" id="nom" name="nom" placeholder="Entrez un titre">
+						</div>
+						<div class="form-group">
+							<label for="auteur">Auteur</label>
+							<input type="text" class="form-control" id="auteur" name="auteur" placeholder="Entrez un auteur">
+						</div>
+						<div class="form-group">
+							<label for="page">Nombre de pages</label>
+							<input type="number" class="form-control" id="pages" name="pages" placeholder="Entrez un nombre de pages">
+						</div>
+						<div class="form-group">
+							<label for="description">Decription du livre</label>
+							<textarea class="form-control" id="description" name="description" rows="3" placeholder="Entrez une description"></textarea>
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+							<button type="submit" id="validationFormAjout" class="btn btn-success">Envoyer mon livre</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		{# Fin Modal ajout d'un livre #}
+
+
+		<script src="/javascript/ajoutLivre.js"></script>
+	{% endblock %}

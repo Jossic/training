@@ -1,6 +1,7 @@
 const express = require('express');
 var router = express.Router();
 const twig = require('twig');
+const mongoose = require('mongoose');
 const livreModel = require('./models/livres');
 
 
@@ -30,9 +31,39 @@ router.get('/livres/:id', (req, res) => {
         .catch(error => {
             console.log(error)
         });
-    // res.render('livres/livre.html.twig', {});
+});
+
+router.post('/livres', (req, res) => {
+    const livre = new livreModel({
+        _id: new mongoose.Types.ObjectId(),
+        nom: req.body.nom,
+        auteur: req.body.auteur,
+        pages: req.body.pages,
+        description: req.body.description
+    })
+    livre.save()
+        .then(resultat => {
+            console.log(resultat);
+            res.redirect('/livres');
+
+        })
+        .catch(error => {
+            console.log(error);
+        })
 }
 );
+
+router.post('/livres/delete/:id', (req, res) => {
+    livreModel.remove({ _id: req.params.id })
+        .exec()
+        .then(resultat => {
+            res.redirect('/livres')
+        })
+        .catch(error => {
+            console.log(error);
+        })
+});
+
 
 router.use((req, res, suite) => {
     const error = new Error('Euhh vous allez ou la ?');
