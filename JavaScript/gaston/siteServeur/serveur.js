@@ -1,37 +1,12 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
-const routeur = require('./routeur');
+const routerLivre = require('./route/livre.route');
+const routerGlobal = require('./route/global.route');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const multer = require('multer');
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, './public/images/')
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + '-' + file.originalname)
-    }
-});
-
-const fileFilter = (req, file, cb) => {
-    if (file.minetype === "image/jpeg" || file.minetype === "image/png") {
-        cb(null, true);
-    } else {
-        cb(new Error("Erreur sur l'image"), false);
-    }
-};
-
-
-const upload = multer({
-    storage: storage,
-    limits: {
-        fileSize: 1024 * 1024 * 5
-    },
-    fileFilter: fileFilter
-});
 
 app.use(session({
     secret: 'keyboard cat',
@@ -41,8 +16,6 @@ app.use(session({
 }))
 
 mongoose.connect('mongodb://localhost/biblio', { useNewUrlParser: true, useUnifiedTopology: true });
-
-
 
 app.use(express.static('public'));
 app.use(morgan('dev'));
@@ -56,15 +29,8 @@ app.use((req, res, next) => {
 });
 
 
-
-app.use('/', routeur);
-
-
-
-
-
-
-
+app.use('/', routerLivre);
+app.use('/', routerGlobal);
 
 
 

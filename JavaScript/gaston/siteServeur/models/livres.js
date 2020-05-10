@@ -5,7 +5,8 @@ const livreSchema = mongoose.Schema({
     nom: String,
     auteur: String,
     pages: Number,
-    description: String
+    description: String,
+    image: String
 });
 
 module.exports = mongoose.model('Livre', livreSchema);
