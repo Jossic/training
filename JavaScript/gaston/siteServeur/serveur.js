@@ -4,6 +4,14 @@ const morgan = require('morgan');
 const routeur = require('./routeur');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+
+app.use(session({
+    secret: 'keyboard cat',
+    resave: true,
+    saveUninitialized: true,
+    cookie: { maxAge: 7200000 }
+}))
 
 mongoose.connect('mongodb://localhost/biblio', { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -12,17 +20,17 @@ mongoose.connect('mongodb://localhost/biblio', { useNewUrlParser: true, useUnifi
 app.use(express.static('public'));
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
+app.set('trust proxy', 1);
+
+app.use((req, res, next) => {
+    res.locals.message = req.session.message;
+    delete req.session.message;
+    next();
+});
 
 
 
 app.use('/', routeur);
-
-
-
-
-
-
-
 
 
 
