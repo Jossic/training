@@ -5,6 +5,33 @@ const routeur = require('./routeur');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './public/images/')
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + '-' + file.originalname)
+    }
+});
+
+const fileFilter = (req, file, cb) => {
+    if (file.minetype === "image/jpeg" || file.minetype === "image/png") {
+        cb(null, true);
+    } else {
+        cb(new Error("Erreur sur l'image"), false);
+    }
+};
+
+
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 1024 * 1024 * 5
+    },
+    fileFilter: fileFilter
+});
 
 app.use(session({
     secret: 'keyboard cat',
