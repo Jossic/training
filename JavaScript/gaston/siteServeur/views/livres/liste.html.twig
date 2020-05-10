@@ -29,7 +29,9 @@
 					<td class="align-middle">
 						<a href="/livres/{{livre._id}}">{{livre.nom}}</a>
 					</td>
-					<td class="align-middle">{{livre.auteur}}</td>
+					<td class="align-middle">
+						<a href="/auteurs/{{livre.auteur}}">{{livre.auteur}}</a>
+					</td>
 					<td class="align-middle">{{livre.pages}}</td>
 					<td class="align-middle">
 						<a href="/livres/modifier/{{livre._id}}" class="btn btn-warning">Modifier</a>

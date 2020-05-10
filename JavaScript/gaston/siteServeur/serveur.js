@@ -3,6 +3,7 @@ const app = express();
 const morgan = require('morgan');
 const routerLivre = require('./route/livre.route');
 const routerGlobal = require('./route/global.route');
+const routerAuteur = require('./route/auteurs.route');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const session = require('express-session');
@@ -28,9 +29,13 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use('/livres', routerLivre);
+app.use('/auteurs', routerAuteur);
 
-app.use('/', routerLivre);
+
+
 app.use('/', routerGlobal);
+
 
 
 

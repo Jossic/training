@@ -1,5 +1,5 @@
 const express = require('express');
-var router = express.Router();
+const router = express.Router();
 const twig = require('twig');
 const livreController = require('../controllers/livre.controller');
 
@@ -36,13 +36,13 @@ const upload = multer({
 
 
 
-router.get('/livres', livreController.livresAffichage);
-router.get('/livres/:id', livreController.livreAffichage);
-router.post('/livres', upload.single("image"), livreController.livresAjout);
-router.post('/livres/delete/:id', livreController.livreSuppression);
-router.get('/livres/modifier/:id', livreController.livreModifier);
-router.post('/livres/updateImage', upload.single('image'), livreController.imageModifier);
-router.post('/livres/modifApp', livreController.modifApp);
+router.get('/', livreController.livresAffichage);
+router.get('/:id', livreController.livreAffichage);
+router.post('/', upload.single("image"), livreController.livresAjout);
+router.post('/delete/:id', livreController.livreSuppression);
+router.get('/modifier/:id', livreController.livreModifier);
+router.post('/updateImage', upload.single('image'), livreController.imageModifier);
+router.post('/modifApp', livreController.modifApp);
 
 
 module.exports = router;
