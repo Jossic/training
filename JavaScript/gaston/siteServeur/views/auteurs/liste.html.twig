@@ -33,10 +33,10 @@
 						{{auteur.livres|length}}
 					</td>
 					<td class="align-middle">
-						<a href="/auteurs/modifier/{{livre._id}}" class="btn btn-warning">Modifier</a>
+						<a href="/auteurs/modifier/{{auteur._id}}" class="btn btn-warning">Modifier</a>
 					</td>
 					<td class="align-middle">
-						<form action="/auteurs/delete/{{livre._id}}" method="post" onsubmit="return confirm('Supprimer le livre ?');">
+						<form action="/auteurs/delete/{{auteur._id}}" method="post" onsubmit="return confirm('Supprimer cet auteur ?');">
 							<button class="btn btn-danger" onclick="" type="submit">Supprimer</button>
 						</form>
 					</td>

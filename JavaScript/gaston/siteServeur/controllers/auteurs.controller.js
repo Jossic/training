@@ -1,4 +1,5 @@
 const auteurModel = require('../models/auteurs');
+const livreModel = require('../models/livres');
 const mongoose = require('mongoose');
 const fs = require('fs');
 
@@ -42,12 +43,33 @@ exports.auteursAjout = (req, res) => {
         sexe: (req.body.sexe === "homme") ? true : false,
         description: req.body.descriptif
     })
-    console.log(auteur);
-    // auteur.save()
-    //     .then((resultat) => {
-    //         res.redirect('/auteurs');
-    //     })
-    //     .catch((err) => {
-    //         console.log(err);
-    //     })
+    auteur.save()
+        .then((resultat) => {
+            res.redirect('/auteurs');
+        })
+        .catch((err) => {
+            console.log(err);
+        })
 };
+
+
+exports.auteurSuppr = (req, res) => {
+    auteurModel.find()
+        .where('nom')
+        .equals('anonyme')
+        .exec()
+        .then(auteur => {
+            livreModel.updateMany({ 'auteur': req.params.id },
+                { '$set': { 'auteur': auteur[0]._id } },
+                { 'multi': true })
+                .exec()
+                .then(
+                    auteurModel.remove({ _id: req.params.id })
+                        .exec()
+                        .then(res.redirect('/auteurs'))
+                        .catch()
+                )
+
+
+        })
+}
