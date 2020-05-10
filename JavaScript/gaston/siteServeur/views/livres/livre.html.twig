@@ -57,10 +57,12 @@
 	{% else %}
 		<div class="row m-2">
 			<div class="col-6">
-				<h2>Information :
+				<h2>Informations :
 				</h2>
 				<div>Auteur :
-					{{livre.auteur}}
+					<a href="/auteurs/{{livre.auteur._id}}">
+						{{livre.auteur.prenom}}
+						{{livre.auteur.nom}}</a>
 				</div>
 				<div>Nombre de pages :
 					{{livre.pages}}

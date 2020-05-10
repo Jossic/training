@@ -30,7 +30,8 @@
 						<a href="/livres/{{livre._id}}">{{livre.nom}}</a>
 					</td>
 					<td class="align-middle">
-						<a href="/auteurs/{{livre.auteur}}">{{livre.auteur}}</a>
+						<a href="/auteurs/{{livre.auteur._id}}">{{livre.auteur.nom}}
+							{{livre.auteur.prenom}}</a>
 					</td>
 					<td class="align-middle">{{livre.pages}}</td>
 					<td class="align-middle">
@@ -68,7 +69,12 @@
 						</div>
 						<div class="form-group">
 							<label for="auteur">Auteur</label>
-							<input type="text" class="form-control" id="auteur" name="auteur" placeholder="Entrez un auteur">
+							<select class="form-control" id="auteur" name="auteur">
+								{% for auteur in auteurs %}
+									<option value="{{auteur._id}}">{{auteur.prenom}}
+										{{auteur.nom}}</option>
+								{% endfor %}
+							</select>
 						</div>
 						<div class="form-group">
 							<label for="page">Nombre de pages</label>
