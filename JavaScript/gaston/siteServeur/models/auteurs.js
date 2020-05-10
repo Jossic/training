@@ -9,4 +9,10 @@ const auteurSchema = mongoose.Schema({
     description: String
 });
 
+auteurSchema.virtual('livres', {
+    ref: "Livre",
+    localField: "_id",
+    foreignField: "auteur"
+})
+
 module.exports = mongoose.model('Auteur', auteurSchema);

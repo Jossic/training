@@ -1,43 +1,49 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-{# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"> #}
-<link rel="stylesheet" href="https://bootswatch.com/4/sandstone/bootstrap.min.css">
-<link rel="stylesheet" href="/css/main.css">
-<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
-<title>Title</title>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="/">@monSite</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta
+		http-equiv="X-UA-Compatible" content="ie=edge">
+		{# <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"> #}
+		<link rel="stylesheet" href="https://bootswatch.com/4/sandstone/bootstrap.min.css">
+		<link rel="stylesheet" href="/css/main.css">
+		<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+		<title>Title</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+			<a class="navbar-brand" href="/">@monSite</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-  <div class="collapse navbar-collapse" id="navbarColor01">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="/">Accueil <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/livres">Livres</a>
-      </li>
-      
-    </ul>
-    
-  </div>
-</nav>
+			<div class="collapse navbar-collapse" id="navbarColor01">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="/">Accueil
+							<span class="sr-only">(current)</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/livres">Livres</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/auteurs">Auteurs</a>
+					</li>
+				</ul>
 
-<div class="container">
-<h1 class="rounded border border-dark m-2 p-2 text-center p_bgColorBlue text-white">{% block titre %}{% endblock %}</h1>
-{% block contenu %} {% endblock %}
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
-</body>
-</html>
+			</div>
+		</nav>
+
+		<div class="container">
+			<h1 class="rounded border border-dark m-2 p-2 text-center p_bgColorBlue text-white"> {% block titre %}{% endblock %}
+				</h1>
+				{% block contenu %}{% endblock %}
+			</div>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		</body>
+	</html>

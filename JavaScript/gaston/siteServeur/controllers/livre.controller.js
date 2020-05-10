@@ -85,14 +85,22 @@ exports.livreSuppression = (req, res) => {
 };
 
 exports.livreModifier = (req, res) => {
-    livreModel.findById(req.params.id)
+    auteurModel.find()
         .exec()
-        .then(livre => {
-            res.render('livres/livre.html.twig', { livre, isModif: true });
+        .then((auteurs) => {
+            livreModel.findById(req.params.id)
+                .populate('auteur')
+                .exec()
+                .then(livre => {
+                    res.render('livres/livre.html.twig', { livre, auteurs, isModif: true });
+                })
+                .catch(error => {
+                    console.log(error)
+                });
         })
         .catch(error => {
             console.log(error)
-        });
+        })
 };
 
 exports.imageModifier = (req, res) => {

@@ -1,0 +1,103 @@
+{% extends "base.html.twig" %}
+
+{% block titre %}Liste des auteurs
+{% endblock %}
+{% block contenu %}
+
+	{% if message|length >0 %}
+		<div class="alert alert-{{message.type}}" role="alert">
+			{{message.content}}
+		</div>
+	{% endif %}
+
+	<table class="table text-center" id="tableauLivres">
+		<thead class="table table-dark text-center">
+			<tr>
+				<th>Prénom</th>
+				<th>Nom</th>
+				<th>Nombre de livres</th>
+				<th colspan="2">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for auteur in auteurs %}
+				<tr>
+					<td class="align-middle">
+						<a href="/auteurs/{{auteur._id}}">
+							{{auteur.prenom}}</a>
+					</td>
+					<td class="align-middle">
+						{{auteur.nom}}
+					</td>
+					<td class="align-middle">
+						{{auteur.livres|length}}
+					</td>
+					<td class="align-middle">
+						<a href="/auteurs/modifier/{{livre._id}}" class="btn btn-warning">Modifier</a>
+					</td>
+					<td class="align-middle">
+						<form action="/auteurs/delete/{{livre._id}}" method="post" onsubmit="return confirm('Supprimer le livre ?');">
+							<button class="btn btn-danger" onclick="" type="submit">Supprimer</button>
+						</form>
+					</td>
+				</tr>
+			{% endfor %}
+
+
+		</tbody>
+	</table>
+	<button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#ajoutModal">Ajouter</button>
+
+
+	{# Modal ajout d'un auteur #}
+	<div class="modal fade" id="ajoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Ajouter un auteur</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="ajoutForm" method="POST" action="">
+						<div class="form-group">
+							<label for="titre">Prénom</label>
+							<input type="text" class="form-control" id="prenom" name="prenom" placeholder="Entrez un prénom">
+						</div>
+						<div class="form-group">
+							<label for="auteur">Nom</label>
+							<input type="text" class="form-control" id="nom" name="nom" placeholder="Entrez un nom">
+						</div>
+						<div class="form-group">
+							<label for="page">Age</label>
+							<input type="number" class="form-control" id="age" name="age" placeholder="Entrez un age">
+						</div>
+						<div class="form-group">
+							<label for="description">Decriptif de l'auteur</label>
+							<textarea class="form-control" id="descriptif" name="descriptif" rows="3" placeholder="Entrez un descriptif"></textarea>
+						</div>
+						<div class="btn-group" data-toggle="buttons">
+							<label class="btn btn-primary active">
+								<input type="radio" name="sexe" value="homme" autocomplete="off" checked>
+								Homme
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="sexe" value="femme" autocomplete="off">
+								Femme
+							</label>
+
+						</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+							<button type="submit" id="validationFormAjout" class="btn btn-success">Enregistrer cet auteur</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		{# Fin Modal ajout d'un livre #}
+
+
+	{% endblock %}
