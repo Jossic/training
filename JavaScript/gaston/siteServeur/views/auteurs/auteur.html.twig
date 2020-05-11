@@ -6,37 +6,77 @@
 	{{auteur.prenom}}
 {% endblock %}
 {% block contenu %}
-	<h2>Nom :
-		{{auteur.nom}}</h2>
-	<h2>Prénom :
-		{{auteur.prenom}}</h2>
-	<div>Age :
-		{{auteur.age}}</div>
-	<div>
-		{% if auteur.sexe %}
-			Homme
-		{% else %}
-			Femme
-		{% endif %}
-	</div>
+	{% if isModif %}
 
-	<h2>Liste de livres</h2>
-	<div class="row">
-		{% for livre in auteur.livres %}
-			<div class="col-12">
-				<div class="row">
-					<div class="col-6">
-						<img src="/images/{{livre.image}}" alt="image">
-					</div>
-					<div class="col-6">
-						<div>Titre :
-							<a href="/livres/{{livre._id}}">{{livre.nom}}</a>
-						</div>
-						<div>Nombre de pages :
-							{{livre.pages}}</div>
-					</div>
-				</div>
+		<form id="ajoutForm" method="POST" action="/auteurs/modifApp">
+			<div class="form-group">
+				<label for="titre">Prénom</label>
+				<input type="text" class="form-control" id="prenom" name="prenom" value="{{auteur.prenom}}" placeholder="Entrez un prénom">
 			</div>
-		{% endfor %}
-	</div>
-{% endblock %}
+			<div class="form-group">
+				<label for="auteur">Nom</label>
+				<input type="text" class="form-control" id="nom" name="nom" value="{{auteur.nom}}" placeholder="Entrez un nom">
+			</div>
+			<div class="form-group">
+				<label for="page">Age</label>
+				<input type="number" class="form-control" id="age" name="age" value="{{auteur.age}}" placeholder="Entrez un age">
+			</div>
+			<div class="form-group">
+				<label for="description">Decriptif de l'auteur</label>
+				<textarea class="form-control" id="description" name="description" value="{{auteur.description}}" rows="3" placeholder="Entrez un descriptif"></textarea>
+			</div>
+			<div class="btn-group" data-toggle="buttons">
+				<label class="btn btn-primary active">
+					<input type="radio" name="sexe" value="homme" autocomplete="off" checked>
+					Homme
+				</label>
+				<label class="btn btn-primary">
+					<input type="radio" name="sexe" value="femme" autocomplete="off">
+					Femme
+				</label>
+
+			</div>
+			<br>
+
+			<input type="hidden" name="identifiant" value="{{auteur._id}}">
+			<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+			<button type="submit" id="validationFormAjout" class="btn btn-success">Enregistrer cet auteur</button>
+
+		{% else %}
+
+
+			<h2>Nom :
+				{{auteur.nom}}</h2>
+			<h2>Prénom :
+				{{auteur.prenom}}</h2>
+			<div>Age :
+				{{auteur.age}}</div>
+			<div>
+				{% if auteur.sexe %}
+					Homme
+				{% else %}
+					Femme
+				{% endif %}
+			</div>
+
+			<h2>Liste de livres</h2>
+			<div class="row">
+				{% for livre in auteur.livres %}
+					<div class="col-12">
+						<div class="row">
+							<div class="col-6">
+								<img src="/images/{{livre.image}}" alt="image">
+							</div>
+							<div class="col-6">
+								<div>Titre :
+									<a href="/livres/{{livre._id}}">{{livre.nom}}</a>
+								</div>
+								<div>Nombre de pages :
+									{{livre.pages}}</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		{% endif %}
+	{% endblock %}
