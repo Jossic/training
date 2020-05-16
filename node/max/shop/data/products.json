@@ -1,1 +1,16 @@
-[{"title":"dffsa"},{"title":"Another"},{"title":"fasdfdas"},{"title":"Second Book"}]
+[{
+    "title": "My Product",
+    "imgURL": "https://lepetitjournal.com/sites/default/files/inline-images/sakura-tokyo-parc-cerisier-secret.jpg",
+    "description": "50",
+    "price": "lorem"
+}, {
+    "title": "Manteau 2",
+    "imgURL": "https://cdn.omni-links.com/eurex/d3f33739-2604-4c5f-91c7-9195743a9943.jpg?d=1280x1280",
+    "description": "200",
+    "price": "fzefef"
+}, {
+    "title": "test",
+    "imgURL": "https://cdn.omni-links.com/eurex/8b4c6cce-aff6-47d6-af17-9f255b385e26.jpg?d=480x480",
+    "description": "120",
+    "price": "bfddddddddddddd"
+}]
