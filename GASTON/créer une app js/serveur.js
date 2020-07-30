@@ -5,8 +5,12 @@ app.set('view engine', 'ejs');
 
 
 
-app.get('/', (req, res) => {
+app.get(['/', '/index'], (req, res) => {
     res.render('index', { pseudo: "Jossic" });
+})
+
+app.get('/personnages', (req, res) => {
+    res.render('personnages');
 })
 
 
