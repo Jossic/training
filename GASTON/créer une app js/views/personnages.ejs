@@ -15,7 +15,7 @@
                 i++;%>
             <tr>
                 <th scope="row"><%= i %> </th>
-                <td><%= personnages[perso].nom %></td>
+                <td><a href="personnage?perso=<%= perso %> "><%= personnages[perso].nom %></a></td>
                 <td><%= personnages[perso].arme %></td>
             </tr>
 

@@ -14,6 +14,11 @@ app.get('/personnages', (req, res) => {
     res.render('personnages', { personnages });
 })
 
+app.get('/personnage', (req, res) => {
+    const idPerso = req.query.perso;
+    res.render('personnage', { perso: personnages[idPerso] });
+})
+
 
 
 
