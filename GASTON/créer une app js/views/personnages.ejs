@@ -1,6 +1,34 @@
 <%- include('partials/header') %>
 
 <div class="container">
-    Persos
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Arme</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% let i=0;
+             for(const perso in personnages){
+                i++;%>
+            <tr>
+                <th scope="row"><%= i %> </th>
+                <td><%= personnages[perso].nom %></td>
+                <td><%= personnages[perso].arme %></td>
+            </tr>
+
+            <%  } %>
+
+
+        </tbody>
+    </table>
+
 </div>
+
+
+
+
+
 <%- include('partials/footer') %>

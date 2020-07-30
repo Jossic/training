@@ -1,0 +1,14 @@
+{
+    "perso1": {
+        "nom": "Berserk",
+        "arme": "Hache"
+    },
+    "perso2": {
+        "nom": "Magi",
+        "arme": "Baton"
+    },
+    "perso3": {
+        "nom": "Bow",
+        "arme": "Arc"
+    }
+}

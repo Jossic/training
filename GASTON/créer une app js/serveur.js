@@ -1,8 +1,9 @@
-const express = require('express');
+const personnages = require('./personnages.json');
+const express = require('Express');
 const app = express();
 
-app.set('view engine', 'ejs');
 
+app.set('view engine', 'ejs');
 
 
 app.get(['/', '/index'], (req, res) => {
@@ -10,7 +11,7 @@ app.get(['/', '/index'], (req, res) => {
 })
 
 app.get('/personnages', (req, res) => {
-    res.render('personnages');
+    res.render('personnages', { personnages });
 })
 
 
