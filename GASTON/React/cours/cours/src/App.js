@@ -26,9 +26,14 @@ class App extends Component {
         ]
     }
 
+    anniversaireHandler() {
+        console.log("Anniversaire")
+    }
+
     render() {
         return (
             <>
+                <button onClick={this.anniversaireHandler}>Anniversaire</button>
                 <Horloge />
                 <Personne {...this.state.personnes[0]} />
                 <Personne nom={this.state.personnes[1].nom} age={this.state.personnes[1].age} sexe={this.state.personnes[1].sexe} />
