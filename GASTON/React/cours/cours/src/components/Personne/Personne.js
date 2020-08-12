@@ -1,5 +1,4 @@
-import React, { Component } from 'react'
-import AgePersonne from './AgePersonne/AgePersonne'
+import React, { Component } from 'react';
 import classes from './Personne.module.css'
 
 export default class Personne extends Component {
@@ -18,7 +17,7 @@ export default class Personne extends Component {
         return (
             <div className={classes.monTitre} >
                 <h1>{this.props.nom}</h1>
-                <AgePersonne age={this.props.age} />
+                {this.props.children}
                 <div style={monStyle}>Sexe : {this.props.sexe ? "Homme" : "Femme"}</div>
                 <button onClick={this.props.click}>Anniversaire</button>
             </div>
