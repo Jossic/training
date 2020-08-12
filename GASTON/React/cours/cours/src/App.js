@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Personne from './Personne';
-import Horloge from './Horloge'
+import Personne from './components/Personne/Personne';
+import Horloge from './containers/Horloge/Horloge'
 
 
 class App extends Component {

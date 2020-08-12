@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import AgePersonne from './AgePersonne'
+import AgePersonne from './AgePersonne/AgePersonne'
 
 export default class Personne extends Component {
     render() {
