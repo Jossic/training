@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import classes from './Horloge.module.css'
 
 export default class Horloge extends Component {
     // constructor(props) {
@@ -33,7 +34,7 @@ export default class Horloge extends Component {
     render() {
         return (
             <>
-                <h2>Heure : {this.state.date.toLocaleTimeString()}</h2>
+                <h2 className={classes.monTitre}>Heure : {this.state.date.toLocaleTimeString()}</h2>
                 <div>Compteur : {this.state.compteur}</div>
             </>
         )

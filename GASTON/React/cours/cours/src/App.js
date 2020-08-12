@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Personne from './components/Personne/Personne';
-import Horloge from './containers/Horloge/Horloge'
-
+import Horloge from './containers/Horloge/Horloge';
+import './App.css';
 
 class App extends Component {
     render() {

@@ -1,14 +1,19 @@
 import React, { Component } from 'react'
 import AgePersonne from './AgePersonne/AgePersonne'
+import classes from './Personne.module.css'
 
 export default class Personne extends Component {
+
+
     render() {
+        const monStyle = { color: 'black' };
+        monStyle.fontSize = "20px";
         return (
-            <>
+            <div className={classes.monTitre} >
                 <h1>{this.props.nom}</h1>
                 <AgePersonne age={this.props.age} />
-                <div>Sexe : {this.props.sexe}</div>
-            </>
+                <div style={monStyle}>Sexe : {this.props.sexe}</div>
+            </div>
         )
     }
 }
