@@ -1,5 +1,6 @@
 import React from 'react';
-import Titre from './components/titre/titre'
+import Titre from './components/titre/TitreH1'
+import Button from './components/Buttons/Button'
 
 
 function App() {
@@ -7,7 +8,9 @@ function App() {
     <div className="container">
       <Titre>Page listant les livres</Titre>
       <div>Livres</div>
-      <button>Ajouter</button>
+      <Button type="Ajouter" clic={() => console.log('Ajout')}></Button>
+      <Button type="Modifier" clic={() => console.log('Modification')}></Button>
+      <Button type="Supprimer" clic={() => console.log('Suppression')}></Button>
     </div>
   );
 }
