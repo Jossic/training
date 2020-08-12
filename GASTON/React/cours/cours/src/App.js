@@ -4,13 +4,35 @@ import Horloge from './containers/Horloge/Horloge';
 import './App.css';
 
 class App extends Component {
+
+
+    state = {
+        personnes: [
+            {
+                nom: "Jossic",
+                age: 32,
+                sexe: true
+            },
+            {
+                nom: "Pauline",
+                age: 30,
+                sexe: false
+            },
+            {
+                nom: "Harvey",
+                age: 1,
+                sexe: true
+            }
+        ]
+    }
+
     render() {
         return (
             <>
                 <Horloge />
-                <Personne nom="Jossic" age="32" sexe="Homme" />
-                <Personne nom="Pauline" age="30" sexe="Femme" />
-                <Personne nom="Harvey" age="1" sexe="Homme" />
+                <Personne {...this.state.personnes[0]} />
+                <Personne nom={this.state.personnes[1].nom} age={this.state.personnes[1].age} sexe={this.state.personnes[1].sexe} />
+                <Personne nom={this.state.personnes[2].nom} age={this.state.personnes[2].age} sexe={this.state.personnes[2].sexe} />
             </>
         );
     }
