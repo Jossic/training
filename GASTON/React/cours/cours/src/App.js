@@ -10,21 +10,25 @@ class App extends Component {
     state = {
         personnes: [
             {
+                id: 1,
                 nom: "Jossic",
                 age: 32,
                 sexe: true
             },
             {
+                id: 2,
                 nom: "Pauline",
                 age: 30,
                 sexe: false
             },
             {
+                id: 3,
                 nom: "Harvey",
                 age: 1,
                 sexe: true
             },
             {
+                id: 4,
                 nom: "Helynn",
                 age: -1,
                 sexe: false
@@ -32,12 +36,16 @@ class App extends Component {
         ]
     }
 
-    anniversaireHandler = (numPersonne) => {
-        const newPersonnes = { ...this.state.personnes[numPersonne] }
+    anniversaireHandler = (id) => {
+        const numCasePersonne = this.state.personnes.findIndex(e => {
+            return e.id === id;
+        })
+
+        const newPersonnes = { ...this.state.personnes[numCasePersonne] };
         newPersonnes.age++;
 
         const newTab = [...this.state.personnes];
-        newTab[numPersonne] = newPersonnes;
+        newTab[numCasePersonne] = newPersonnes;
         this.setState({ personnes: newTab });
     }
 
@@ -45,9 +53,9 @@ class App extends Component {
         return (
             <>
                 <Horloge />
-                {this.state.personnes.map((personne, index) => {
+                {this.state.personnes.map((personne) => {
                     return (
-                        <Personne {...personne} click={() => this.anniversaireHandler(index)}>
+                        <Personne key={personne.id} {...personne} click={() => this.anniversaireHandler(personne.id)}>
                             <AgePersonne age={personne.age} />
                         </Personne>
                     )
