@@ -23,6 +23,11 @@ class App extends Component {
                 nom: "Harvey",
                 age: 1,
                 sexe: true
+            },
+            {
+                nom: "Helynn",
+                age: -1,
+                sexe: false
             }
         ]
     }
@@ -40,15 +45,14 @@ class App extends Component {
         return (
             <>
                 <Horloge />
-                <Personne {...this.state.personnes[0]} click={() => this.anniversaireHandler(0)}>
-                    <AgePersonne age={this.state.personnes[0].age} />
-                </Personne>
-                <Personne {...this.state.personnes[1]} click={() => this.anniversaireHandler(1)}>
-                    <AgePersonne age={this.state.personnes[1].age} />
-                </Personne>
-                <Personne {...this.state.personnes[2]} click={() => this.anniversaireHandler(2)}>
-                    <AgePersonne age={this.state.personnes[2].age} />
-                </Personne>
+                {this.state.personnes.map((personne, index) => {
+                    return (
+                        <Personne {...personne} click={() => this.anniversaireHandler(index)}>
+                            <AgePersonne age={personne.age} />
+                        </Personne>
+                    )
+                })}
+
             </>
         );
     }
