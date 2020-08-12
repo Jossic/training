@@ -20,6 +20,7 @@ export default class Personne extends Component {
                 <h1>{this.props.nom}</h1>
                 <AgePersonne age={this.props.age} />
                 <div style={monStyle}>Sexe : {this.props.sexe ? "Homme" : "Femme"}</div>
+                <button onClick={this.props.click}>Anniversaire</button>
             </div>
         )
     }
