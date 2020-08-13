@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Button from '../../components/Buttons/Button';
+
+import Livre from './Livre/Livre';
 
 
 export default class Livres extends Component {
@@ -29,11 +30,9 @@ export default class Livres extends Component {
                 auteur: "Anto Nevo",
                 nbPages: 200
             },
-
         ]
-        ,
-
     }
+
     render() {
         return (
             <table className="table text-center">
@@ -48,16 +47,15 @@ export default class Livres extends Component {
                 <tbody className="table-light">
                     {this.state.livres.map((livre) => {
                         return (
-                            <tr key={livre.id}>
-                                <td>{livre.titre}</td>
-                                <td>{livre.auteur}</td>
-                                <td>{livre.nbPages}</td>
-                                <td><Button type="btn-info" clic={() => console.log('Modification')}>Modifier</Button></td>
-                                <td><Button type="btn-warning" clic={() => console.log('Suppression')}>Supprimer</Button></td>
+                            <tr key={livre.id} >
+                                <Livre
+                                    titre={livre.titre}
+                                    auteur={livre.auteur}
+                                    nbPages={livre.nbPages}
+                                />
                             </tr>
                         )
                     })}
-
                 </tbody>
             </table>
         )
