@@ -33,6 +33,18 @@ export default class Livres extends Component {
         ]
     }
 
+    handleSuppressionLivre = (id) => {
+        const livreIndexTab = this.state.livres.findIndex((l) => {
+            return l.id === id;
+        })
+
+        const newLivres = [...this.state.livres];
+        newLivres.splice(livreIndexTab, 1);
+
+        this.setState({ livres: newLivres });
+    }
+
+
     render() {
         return (
             <table className="table text-center">
@@ -52,6 +64,7 @@ export default class Livres extends Component {
                                     titre={livre.titre}
                                     auteur={livre.auteur}
                                     nbPages={livre.nbPages}
+                                    suppression={() => this.handleSuppressionLivre(livre.id)}
                                 />
                             </tr>
                         )
