@@ -31,7 +31,8 @@ export default class Livres extends Component {
                 auteur: "Anto Nevo",
                 nbPages: 200
             },
-        ]
+        ],
+        lastIdLivre: 4,
     }
 
     handleSuppressionLivre = (id) => {
@@ -46,9 +47,21 @@ export default class Livres extends Component {
     }
 
     handleAjoutLivre = (titre, auteur, nbPages) => {
-        console.log(titre);
-        console.log(auteur);
-        console.log(nbPages);
+        const newLivre = {
+            id: this.state.lastIdLivre + 1,
+            titre: titre,
+            auteur: auteur,
+            nbPages: nbPages
+        };
+        const newListeLivres = [...this.state.livres];
+        newListeLivres.push(newLivre);
+
+        this.setState((oldState) => {
+            return {
+                livres: newListeLivres,
+                lastIdLivre: oldState.lastIdLivre + 1,
+            }
+        })
     }
 
     render() {
