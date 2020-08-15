@@ -62,6 +62,7 @@ export default class Livres extends Component {
                 lastIdLivre: oldState.lastIdLivre + 1,
             }
         })
+        this.props.fermerForm();
     }
 
     render() {

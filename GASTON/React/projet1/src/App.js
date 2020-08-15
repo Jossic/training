@@ -20,7 +20,7 @@ class App extends Component {
     return (
       <div className="container" >
         <Titre>Page listant les livres</Titre>
-        <Livres ajoutLivre={this.state.ajoutLivre} />
+        <Livres ajoutLivre={this.state.ajoutLivre} fermerForm={() => this.setState({ ajoutLivre: false })} />
         <Button type="btn-success" css="w-100" clic={this.handleClicAjoutLivre}>
           {!this.state.ajoutLivre ? "Ajouter" : "Fermer l'ajout"}
         </Button>

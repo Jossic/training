@@ -11,12 +11,17 @@ export default class FormulaireAjout extends Component {
     handleValidationForm = (e) => {
         e.preventDefault();
         this.props.validation(this.state.monTitre, this.state.monAuteur, this.state.mesPages);
+        this.setState({
+            monTitre: "",
+            monAuteur: "",
+            mesPages: ""
+        })
     }
 
     render() {
         return (
             <>
-                <h2 className="text-center text-primary" style={{ fontFamily: 'Lemonada' }}>htmlFormulaire d'ajout</h2>
+                <h2 className="text-center text-primary" style={{ fontFamily: 'Lemonada' }}>Ajouter un livre</h2>
                 <form>
                     <div className="form-group">
                         <label htmlFor="titre">Titre du livre</label>
