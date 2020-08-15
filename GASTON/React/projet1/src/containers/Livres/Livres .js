@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Livre from './Livre/Livre';
 import FormulaireAjout from './FormulaireAjout/FormulaireAjout';
+import FormulaireModification from './FormulaireModification/FormulaireModification';
 
 
 export default class Livres extends Component {
@@ -33,6 +34,7 @@ export default class Livres extends Component {
             },
         ],
         lastIdLivre: 4,
+        idLivreAModifier: 0,
     }
 
     handleSuppressionLivre = (id) => {
@@ -65,6 +67,22 @@ export default class Livres extends Component {
         this.props.fermerForm();
     }
 
+    handleModificationLivre = (id, titre, auteur, nbPages) => {
+        const caseLivre = this.state.livres.findIndex(l => {
+            return l.id === id;
+        });
+
+        const newLivre = { id, titre, auteur, nbPages };
+
+        const newListe = [...this.state.livres];
+        newListe[caseLivre] = newLivre;
+
+        this.setState({
+            livres: newListe,
+            idLivreAModifier: 0
+        })
+    }
+
     render() {
         return (
             <>
@@ -79,16 +97,27 @@ export default class Livres extends Component {
                     </thead>
                     <tbody className="table-light">
                         {this.state.livres.map((livre) => {
-                            return (
-                                <tr key={livre.id} >
-                                    <Livre
-                                        titre={livre.titre}
-                                        auteur={livre.auteur}
-                                        nbPages={livre.nbPages}
-                                        suppression={() => this.handleSuppressionLivre(livre.id)}
-                                    />
-                                </tr>
-                            )
+                            if (livre.id !== this.state.idLivreAModifier) {
+                                return (
+                                    <tr key={livre.id} >
+                                        <Livre
+                                            titre={livre.titre}
+                                            auteur={livre.auteur}
+                                            nbPages={livre.nbPages}
+                                            suppression={() => this.handleSuppressionLivre(livre.id)}
+                                            modification={() => this.setState({ idLivreAModifier: livre.id })}
+                                        />
+                                    </tr>
+                                )
+                            } else {
+                                return (<tr key={livre.id} ><FormulaireModification
+                                    id={livre.id}
+                                    titre={livre.titre}
+                                    auteur={livre.auteur}
+                                    nbPages={livre.nbPages}
+                                    validationModification={this.handleModificationLivre}
+                                /></tr>);
+                            }
                         })}
                     </tbody>
                 </table>
