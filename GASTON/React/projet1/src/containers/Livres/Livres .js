@@ -45,6 +45,11 @@ export default class Livres extends Component {
         this.setState({ livres: newLivres });
     }
 
+    handleAjoutLivre = (titre, auteur, nbPages) => {
+        console.log(titre);
+        console.log(auteur);
+        console.log(nbPages);
+    }
 
     render() {
         return (
@@ -73,7 +78,7 @@ export default class Livres extends Component {
                         })}
                     </tbody>
                 </table>
-                {this.props.ajoutLivre && <FormulaireAjout />}
+                {this.props.ajoutLivre && <FormulaireAjout validation={this.handleAjoutLivre} />}
             </>
         )
     }
