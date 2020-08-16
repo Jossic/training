@@ -1,22 +1,17 @@
 import React, { Component } from 'react';
 import Button from '../../../components/Buttons/Button';
+import { withFormik } from 'formik';
 
-export default class FormulaireAjout extends Component {
-    state = {
-        monTitre: "",
-        monAuteur: "",
-        mesPages: ""
-    }
-
-    handleValidationForm = (e) => {
-        e.preventDefault();
-        this.props.validation(this.state.monTitre, this.state.monAuteur, this.state.mesPages);
-        this.setState({
-            monTitre: "",
-            monAuteur: "",
-            mesPages: ""
-        })
-    }
+class FormulaireAjout extends Component {
+    // handleValidationForm = (e) => {
+    //     e.preventDefault();
+    //     this.props.validation(this.state.monTitre, this.state.monAuteur, this.state.mesPages);
+    //     this.setState({
+    //         monTitre: "",
+    //         monAuteur: "",
+    //         mesPages: ""
+    //     })
+    // }
 
     render() {
         return (
@@ -25,19 +20,44 @@ export default class FormulaireAjout extends Component {
                 <form>
                     <div className="form-group">
                         <label htmlFor="titre">Titre du livre</label>
-                        <input type="text" value={this.state.monTitre} className="form-control" id="titre" placeholder="Titre du livre" onChange={e => this.setState({ monTitre: e.target.value })} />
+                        <input type="text" name="titre"
+                            value={this.props.values.titre}
+                            className="form-control" id="titre" placeholder="Titre du livre"
+                            onChange={this.props.handleChange}
+                        />
                     </div>
                     <div className="form-group">
                         <label htmlFor="auteur">Auteur du livre</label>
-                        <input type="text" value={this.state.monAuteur} className="form-control" id="auteur" placeholder="Auteur du livre" onChange={e => this.setState({ monAuteur: e.target.value })} />
+                        <input type="text" name="auteur"
+                            value={this.props.values.auteur}
+                            className="form-control" id="auteur" placeholder="Auteur du livre"
+                            onChange={this.props.handleChange}
+                        />
                     </div>
                     <div className="form-group">
                         <label htmlFor="nbPages">Nombre de pages du livre</label>
-                        <input type="text" value={this.state.mesPages} className="form-control" id="nbPages" placeholder="Nombre de pages du livre" onChange={e => this.setState({ mesPages: e.target.value })} />
+                        <input type="number" name="nbPages"
+                            value={this.props.values.nbPages}
+                            className="form-control" id="nbPages" placeholder="Nombre de pages du livre"
+                            onChange={this.props.handleChange}
+                        />
                     </div >
-                    <Button type="btn-primary" clic={this.handleValidationForm}>Envoyer</Button>
+                    <Button type="btn-primary" clic={this.props.handleSubmit}>Envoyer</Button>
                 </form >
             </>
         )
     }
 }
+
+export default withFormik({
+    mapPropsToValues: () => ({
+        titre: '',
+        auteur: '',
+        nbPages: ''
+    }),
+    validate: values => {
+
+    }, handleSubmit: (values, { props }) => {
+        props.validation(values.titre, values.auteur, values.nbPages);
+    }
+})(FormulaireAjout)
