@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Button from '../../../components/Buttons/Button';
-import { withFormik } from 'formik';
+import { withFormik, ErrorMessage } from 'formik';
 
 class FormulaireAjout extends Component {
     // handleValidationForm = (e) => {
@@ -24,7 +24,9 @@ class FormulaireAjout extends Component {
                             value={this.props.values.titre}
                             className="form-control" id="titre" placeholder="Titre du livre"
                             onChange={this.props.handleChange}
+                            onBlur={this.props.handleBlur}
                         />
+                        {this.props.touched.titre && this.props.errors.titre && <span style={{ color: "red" }}>{this.props.errors.titre}</span>}
                     </div>
                     <div className="form-group">
                         <label htmlFor="auteur">Auteur du livre</label>
@@ -32,7 +34,9 @@ class FormulaireAjout extends Component {
                             value={this.props.values.auteur}
                             className="form-control" id="auteur" placeholder="Auteur du livre"
                             onChange={this.props.handleChange}
+                            onBlur={this.props.handleBlur}
                         />
+                        {this.props.touched.auteur && this.props.errors.auteur && <span style={{ color: "red" }}>{this.props.errors.auteur}</span>}
                     </div>
                     <div className="form-group">
                         <label htmlFor="nbPages">Nombre de pages du livre</label>
@@ -40,7 +44,9 @@ class FormulaireAjout extends Component {
                             value={this.props.values.nbPages}
                             className="form-control" id="nbPages" placeholder="Nombre de pages du livre"
                             onChange={this.props.handleChange}
+                            onBlur={this.props.handleBlur}
                         />
+                        {this.props.touched.nbPages && this.props.errors.nbPages && <span style={{ color: "red" }}>{this.props.errors.nbPages}</span>}
                     </div >
                     <Button type="btn-primary" clic={this.props.handleSubmit}>Envoyer</Button>
                 </form >
@@ -56,7 +62,17 @@ export default withFormik({
         nbPages: ''
     }),
     validate: values => {
-
+        const errors = {};
+        if (values.titre.length < 3) {
+            errors.titre = "Le titre du livre doit avoir plus de 3 caractères";
+        }
+        if (!values.auteur) {
+            errors.auteur = "Ce champ est obligatoire";
+        }
+        if (!values.nbPages) {
+            errors.nbPages = "Ce champ est obligatoire";
+        }
+        return errors;
     }, handleSubmit: (values, { props }) => {
         props.validation(values.titre, values.auteur, values.nbPages);
     }
