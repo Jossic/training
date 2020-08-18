@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Button from '../../../components/Buttons/Button';
 import { withFormik, ErrorMessage } from 'formik';
+import * as Yup from "yup";
 
 class FormulaireAjout extends Component {
     // handleValidationForm = (e) => {
@@ -43,7 +44,7 @@ class FormulaireAjout extends Component {
                         <input type="number" name="nbPages"
                             value={this.props.values.nbPages}
                             className="form-control" id="nbPages" placeholder="Nombre de pages du livre"
-                            onChange={this.props.handleChange}
+                            onChange={(e) => this.props.setFieldValue('nbPages', +e.target.value)}
                             onBlur={this.props.handleBlur}
                         />
                         {this.props.touched.nbPages && this.props.errors.nbPages && <span style={{ color: "red" }}>{this.props.errors.nbPages}</span>}
@@ -61,19 +62,30 @@ export default withFormik({
         auteur: '',
         nbPages: ''
     }),
-    validate: values => {
-        const errors = {};
-        if (values.titre.length < 3) {
-            errors.titre = "Le titre du livre doit avoir plus de 3 caractères";
-        }
-        if (!values.auteur) {
-            errors.auteur = "Ce champ est obligatoire";
-        }
-        if (!values.nbPages) {
-            errors.nbPages = "Ce champ est obligatoire";
-        }
-        return errors;
-    }, handleSubmit: (values, { props }) => {
+    validationSchema: Yup.object().shape({
+        titre: Yup.string()
+            .min(3, 'Le titre doit avoir plus de 3 caractères')
+            .max(60, 'Faut pas déconner là ?')
+            .required('Le titre du livre est obligatoire'),
+        auteur: Yup.string()
+            .required('Le nom de l\'auteur est obligatoire'),
+        nbPages: Yup.number().required('Le nombre de pages est obligatoire')
+
+    }),
+    // validate: values => {
+    //     // const errors = {};
+    //     // if (values.titre.length < 3) {
+    //     //     errors.titre = "Le titre du livre doit avoir plus de 3 caractères";
+    //     // }
+    //     // if (!values.auteur) {
+    //     //     errors.auteur = "Ce champ est obligatoire";
+    //     // }
+    //     // if (!values.nbPages) {
+    //     //     errors.nbPages = "Ce champ est obligatoire";
+    //     // }
+    //     // return errors;
+    // }, 
+    handleSubmit: (values, { props }) => {
         props.validation(values.titre, values.auteur, values.nbPages);
     }
 })(FormulaireAjout)
