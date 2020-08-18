@@ -1,0 +1,15 @@
+.flecheDroite {
+    clip-path: polygon(0 0, 0% 100%, 100% 50%);
+    background-color: orange;
+    cursor: pointer;
+    width: 20px;
+    height: 32px;
+}
+
+.flecheGauche {
+    clip-path: polygon(100% 0, 0 50%, 100% 100%);
+    background-color: orange;
+    cursor: pointer;
+    width: 20px;
+    height: 32px;
+}

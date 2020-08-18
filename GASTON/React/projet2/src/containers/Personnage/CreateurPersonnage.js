@@ -7,7 +7,7 @@ import Personnage from './Personnage';
 export default class CreateurPersonnage extends Component {
     state = {
         personnage: {
-            image: 4,
+            image: 3,
             force: 0,
             agi: 0,
             intel: 0

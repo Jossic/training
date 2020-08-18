@@ -10,6 +10,7 @@ import ImagePlayer9 from "../../assets/images/persos/player1.png";
 import ImagePlayer10 from "../../assets/images/persos/player2.png";
 import ImagePlayer11 from "../../assets/images/persos/player3.png";
 import React from 'react';
+import classes from './fleche.module.css'
 
 const ImagePerso = (props) => {
     let imageToPrint = "";
@@ -26,10 +27,13 @@ const ImagePerso = (props) => {
     else if (props.numImg === 11) imageToPrint = ImagePlayer11;
 
 
-
     return (
         <>
-            <img src={imageToPrint} alt={imageToPrint} />
+            <div className="row no-gutters text-center align-items-center">
+                <div className={["col-1", classes.flecheGauche].join(' ')}></div>
+                <div className="col"><img src={imageToPrint} alt={imageToPrint} width="300px" /></div>
+                <div className={["col-1", classes.flecheDroite].join(' ')}></div>
+            </div>
         </>
     );
 
