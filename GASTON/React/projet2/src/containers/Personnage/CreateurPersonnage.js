@@ -8,10 +8,11 @@ export default class CreateurPersonnage extends Component {
     state = {
         personnage: {
             image: 3,
-            force: 0,
-            agi: 0,
-            intel: 0
-        }
+            force: 10,
+            agi: 10,
+            intel: 10
+        },
+        nbPointDispo: 7
     }
 
     handleImagePrecedente = () => {
@@ -48,6 +49,7 @@ export default class CreateurPersonnage extends Component {
                     {...this.state.personnage}
                     precedente={this.handleImagePrecedente}
                     suivante={this.handleImageSuivante}
+                    nbPointDispo={this.state.nbPointDispo}
                 />
                 <p>Armes</p>
                 <Button type="btn-danger w-50" clic={() => console.log('Reinitialisation')}>Réinitialiser</Button>

@@ -1,5 +1,6 @@
 import React from 'react';
 import ImagePerso from './ImagePerso';
+import CaracPerso from './CaracPerso';
 
 const Personnage = (props) => {
     return (
@@ -12,7 +13,11 @@ const Personnage = (props) => {
                         flecheDroite={props.suivante}
                     />
                 </div>
-                <div className="col-6">Force : {props.force}<br />Agi : {props.agi}<br />Intel : {props.intel}<br /></div>
+                <CaracPerso
+                    nbPointDispo={props.nbPointDispo}
+                    force={props.force}
+                    agi={props.agi}
+                    intel={props.intel} />
             </div>
         </>
     );
