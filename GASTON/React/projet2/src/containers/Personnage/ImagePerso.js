@@ -30,9 +30,9 @@ const ImagePerso = (props) => {
     return (
         <>
             <div className="row no-gutters text-center align-items-center">
-                <div className={["col-1", classes.flecheGauche].join(' ')}></div>
-                <div className="col"><img src={imageToPrint} alt={imageToPrint} width="300px" /></div>
-                <div className={["col-1", classes.flecheDroite].join(' ')}></div>
+                <div className={["col-1", classes.flecheGauche].join(' ')} onClick={props.flecheGauche}></div>
+                <div className="col"><img src={imageToPrint} alt={imageToPrint} /></div>
+                <div className={["col-1", classes.flecheDroite].join(' ')} onClick={props.flecheDroite}></div>
             </div>
         </>
     );
