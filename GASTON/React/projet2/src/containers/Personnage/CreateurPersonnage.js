@@ -18,6 +18,7 @@ export default class CreateurPersonnage extends Component {
         nbPointDispo: 7,
         armes: null,
         loading: false,
+        nom: "",
     }
 
     componentDidMount = () => {
@@ -99,7 +100,21 @@ export default class CreateurPersonnage extends Component {
     }
 
     handleValidation = () => {
-        alert('Personnage créé !');
+        this.setState({ loading: true });
+        const player = {
+            perso: { ...this.state.personnage },
+            nom: this.state.nom,
+        };
+        axios.post('https://creaperso-67a43.firebaseio.com/persos.json', player)
+            .then((res) => {
+                console.log(res)
+                this.setState({ loading: false });
+                this.handleReinitialisation();
+            })
+            .catch((error) => {
+                console.log(error)
+                this.setState({ loading: false });
+            })
     }
 
     handleReinitialisation = () => {
@@ -112,7 +127,8 @@ export default class CreateurPersonnage extends Component {
                 arme: null,
             },
             nbPointDispo: 7,
-            armes: ["epee", "fleau", "arc", "hache", "appel", "griffe", "guide", "pike"]
+            armes: ["epee", "fleau", "arc", "hache", "appel", "griffe", "guide", "pike"],
+            nom: "",
         });
     }
 
@@ -120,6 +136,10 @@ export default class CreateurPersonnage extends Component {
         return (
             <div className="container">
                 <Titre>Créateur de personnage</Titre>
+                <div className="form-group">
+                    <label htmlFor="inputName">Votre nom</label>
+                    <input type="text" className="form-control" id="inputName" value={this.state.nom} onChange={e => this.setState({ nom: e.target.value })} />
+                </div>
                 <Personnage
                     {...this.state.personnage}
                     precedente={this.handleImagePrecedente}
