@@ -8,9 +8,9 @@ export default class CreateurPersonnage extends Component {
     state = {
         personnage: {
             image: 3,
-            force: 10,
-            agi: 10,
-            intel: 10
+            force: 3,
+            agi: 3,
+            intel: 3
         },
         nbPointDispo: 7
     }
@@ -41,12 +41,32 @@ export default class CreateurPersonnage extends Component {
         })
     }
 
-    handleCaracPlus = () => {
-        console.log("plus")
+    handleCaracPlus = (carac) => {
+        this.setState((oldState, props) => {
+            if (oldState.personnage[carac] >= 20 || oldState.nbPointDispo <= 0) return null;
+            const newPointCarac = oldState.personnage[carac] + 1;
+            const newPerso = { ...oldState.personnage };
+            const newNbPointsDispo = oldState.nbPointDispo - 1;
+            newPerso[carac] = newPointCarac;
+            return {
+                personnage: newPerso,
+                nbPointDispo: newNbPointsDispo,
+            }
+        })
     }
 
-    handleCaracMoins = () => {
-        console.log("moins")
+    handleCaracMoins = (carac) => {
+        this.setState((oldState, props) => {
+            if (oldState.personnage[carac] <= 0 || oldState.nbPointDispo <= 0) return null;
+            const newPointCarac = oldState.personnage[carac] - 1;
+            const newPerso = { ...oldState.personnage };
+            const newNbPointsDispo = oldState.nbPointDispo + 1;
+            newPerso[carac] = newPointCarac;
+            return {
+                personnage: newPerso,
+                nbPointDispo: newNbPointsDispo,
+            }
+        })
     }
 
     render() {
@@ -58,8 +78,8 @@ export default class CreateurPersonnage extends Component {
                     precedente={this.handleImagePrecedente}
                     suivante={this.handleImageSuivante}
                     nbPointDispo={this.state.nbPointDispo}
-                    moins={this.handleCaracMoins}
-                    plus={this.handleCaracPlus}
+                    enleverPoint={this.handleCaracMoins}
+                    ajouterPoint={this.handleCaracPlus}
                 />
                 <p>Armes</p>
                 <Button type="btn-danger w-50" clic={() => console.log('Reinitialisation')}>Réinitialiser</Button>
