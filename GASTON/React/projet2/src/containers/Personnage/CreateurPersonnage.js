@@ -78,6 +78,24 @@ export default class CreateurPersonnage extends Component {
         this.setState({ personnage: newPerso })
     }
 
+    handleValidation = () => {
+        alert('Personnage créé !');
+    }
+
+    handleReinitialisation = () => {
+        this.setState({
+            personnage: {
+                image: 3,
+                force: 3,
+                agi: 3,
+                intel: 3,
+                arme: null,
+            },
+            nbPointDispo: 7,
+            armes: ["epee", "fleau", "arc", "hache", "appel", "griffe", "guide", "pike"]
+        });
+    }
+
     render() {
         return (
             <div className="container">
@@ -95,8 +113,8 @@ export default class CreateurPersonnage extends Component {
                     changeArme={this.handleChangeArme}
                     currentArme={this.state.personnage.arme}
                 />
-                <Button type="btn-danger w-50" clic={() => console.log('Reinitialisation')}>Réinitialiser</Button>
-                <Button type="btn-success w-50" clic={() => console.log('Création')}>Créer</Button>
+                <Button type="btn-danger w-50" clic={this.handleReinitialisation}>Réinitialiser</Button>
+                <Button type="btn-success w-50" clic={this.handleValidation}>Créer</Button>
             </div>
         )
     }
