@@ -110,6 +110,7 @@ export default class CreateurPersonnage extends Component {
                 console.log(res)
                 this.setState({ loading: false });
                 this.handleReinitialisation();
+                this.props.refresh();
             })
             .catch((error) => {
                 console.log(error)

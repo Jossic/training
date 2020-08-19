@@ -8,7 +8,7 @@ export default class ListePersonnage extends Component {
         loading: false,
     }
 
-    componentDidMount = () => {
+    loadData = () => {
         this.setState({ loading: true });
         axios.get('https://creaperso-67a43.firebaseio.com/persos.json')
             .then((res) => {
@@ -19,6 +19,17 @@ export default class ListePersonnage extends Component {
             .catch((error) => {
                 console.log(error)
             })
+    }
+
+    componentDidMount = () => {
+        this.loadData();
+    }
+
+    componentDidUpdate = (oldProps, oldState) => {
+        if (oldProps.refresh !== this.props.refresh) {
+            this.loadData();
+        }
+
     }
 
     render() {
