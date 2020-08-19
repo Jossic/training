@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Titre from '../../components/Titres/Titre';
 import Button from '../../components/Buttons/Button';
 import Personnage from './Personnage';
-import Armes from '../Armes/Armes'
+import Armes from '../Armes/Armes';
+import axios from 'axios';
 
 
 export default class CreateurPersonnage extends Component {
@@ -15,7 +16,26 @@ export default class CreateurPersonnage extends Component {
             arme: null,
         },
         nbPointDispo: 7,
-        armes: ["epee", "fleau", "arc", "hache", "appel", "griffe", "guide", "pike"]
+        armes: null,
+        loading: false,
+    }
+
+    componentDidMount = () => {
+        this.setState({ loading: true });
+        axios.get('https://creaperso-67a43.firebaseio.com/armes.json')
+            .then((res) => {
+                const armesArray = Object.values(res.data);
+                this.setState({
+                    armes: armesArray,
+                    loading: false,
+                });
+            })
+            .catch(error => {
+                console.log("error");
+                this.setState({
+                    loading: false,
+                });
+            })
     }
 
     handleImagePrecedente = () => {
@@ -108,11 +128,14 @@ export default class CreateurPersonnage extends Component {
                     enleverPoint={this.handleCaracMoins}
                     ajouterPoint={this.handleCaracPlus}
                 />
-                <Armes
-                    listeArmes={this.state.armes}
-                    changeArme={this.handleChangeArme}
-                    currentArme={this.state.personnage.arme}
-                />
+                {this.state.loading && <div>Chargement...</div>}
+                {this.state.armes &&
+                    <Armes
+                        listeArmes={this.state.armes}
+                        changeArme={this.handleChangeArme}
+                        currentArme={this.state.personnage.arme}
+                    />
+                }
                 <Button type="btn-danger w-50" clic={this.handleReinitialisation}>Réinitialiser</Button>
                 <Button type="btn-success w-50" clic={this.handleValidation}>Créer</Button>
             </div>
