@@ -17,7 +17,9 @@ const Personnage = (props) => {
                     nbPointDispo={props.nbPointDispo}
                     force={props.force}
                     agi={props.agi}
-                    intel={props.intel} />
+                    intel={props.intel}
+                    moins={props.moins}
+                    plus={props.plus} />
             </div>
         </>
     );

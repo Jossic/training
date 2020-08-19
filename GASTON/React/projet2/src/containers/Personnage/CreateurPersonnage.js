@@ -41,6 +41,14 @@ export default class CreateurPersonnage extends Component {
         })
     }
 
+    handleCaracPlus = () => {
+        console.log("plus")
+    }
+
+    handleCaracMoins = () => {
+        console.log("moins")
+    }
+
     render() {
         return (
             <div className="container">
@@ -50,6 +58,8 @@ export default class CreateurPersonnage extends Component {
                     precedente={this.handleImagePrecedente}
                     suivante={this.handleImageSuivante}
                     nbPointDispo={this.state.nbPointDispo}
+                    moins={this.handleCaracMoins}
+                    plus={this.handleCaracPlus}
                 />
                 <p>Armes</p>
                 <Button type="btn-danger w-50" clic={() => console.log('Reinitialisation')}>Réinitialiser</Button>
