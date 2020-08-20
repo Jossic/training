@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom'
 
 const Pays = (props) => {
     return (
@@ -7,7 +8,7 @@ const Pays = (props) => {
                 <img src={props.drapeau} alt={props.nom} width="100%" className="p-2" />
             </div>
             <div className="col">
-                <h4>Nom :  {props.nomFr}</h4>
+                <NavLink to={props.match.url + "/" + props.nom} className="nav-link"><h3>{props.nomFr}</h3></NavLink>
                 <div>Capitale :  {props.capitale}</div>
                 <div>Continent : {props.continent}</div>
                 <div>Population :  {props.population}</div>
