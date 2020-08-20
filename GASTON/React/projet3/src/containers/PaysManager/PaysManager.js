@@ -8,11 +8,20 @@ export default class PaysManager extends Component {
     state = {
         listePays: [],
         loading: false,
+        ContinentSelect: null,
     }
 
     componentWillMount = () => {
+        this.handleSelecContinent('all');
+    }
+
+    handleSelecContinent = (continent) => {
+        let param = '';
+        if (continent == "all") param = continent;
+        else param = `region/${continent}`;
+
         this.setState({ loading: true });
-        axios.get('https://restcountries.eu/rest/v2/all')
+        axios.get(`https://restcountries.eu/rest/v2/${param}`)
             .then((res) => {
                 const listePays = res.data.map((pays) => {
                     return {
@@ -28,25 +37,25 @@ export default class PaysManager extends Component {
                 this.setState({
                     listePays,
                     loading: false,
+                    ContinentSelect: continent,
                 });
             })
             .catch((error) => {
                 console.log(error)
                 this.setState({ loading: false });
             })
-
     }
 
     render() {
         return (
             <div>
                 <Titre> Liste des pays du monde</Titre>
-                <Button type='btn-info'>Tous</Button>
-                <Button type='btn-info'>Europe</Button>
-                <Button type='btn-info'>Afrique</Button>
-                <Button type='btn-info'>Asie</Button>
-                <Button type='btn-info'>Amérique</Button>
-                <Button type='btn-info'>Océanie</Button>
+                <Button type='btn-info' clic={() => this.handleSelecContinent('all')} estSelect={this.state.ContinentSelect === "all"}>Tous</Button>
+                <Button type='btn-info' clic={() => this.handleSelecContinent('Europe')} estSelect={this.state.ContinentSelect === "Europe"}>Europe</Button>
+                <Button type='btn-info' clic={() => this.handleSelecContinent('Africa')} estSelect={this.state.ContinentSelect === "Africa"}>Afrique</Button>
+                <Button type='btn-info' clic={() => this.handleSelecContinent('Asia')} estSelect={this.state.ContinentSelect === "Asia"}>Asie</Button>
+                <Button type='btn-info' clic={() => this.handleSelecContinent('Americas')} estSelect={this.state.ContinentSelect === "Americas"}>Amérique</Button>
+                <Button type='btn-info' clic={() => this.handleSelecContinent('Oceania')} estSelect={this.state.ContinentSelect === "Oceania"}>Océanie</Button>
                 {
                     this.state.loading
                         ? <div>Chargement en cours...</div>
