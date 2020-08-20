@@ -76,7 +76,7 @@ export default class PaysManager extends Component {
 
         }
         return (
-            <div>
+            <div className="container">
                 <Titre> Liste des pays du monde</Titre>
                 <Button type='btn-info' clic={() => this.handleSelecContinent('all')} estSelect={this.state.ContinentSelect === "all"}>Tous</Button>
                 <Button type='btn-info' clic={() => this.handleSelecContinent('Europe')} estSelect={this.state.ContinentSelect === "Europe"}>Europe</Button>
@@ -94,7 +94,7 @@ export default class PaysManager extends Component {
                 }
 
                 <div>{pagination}</div>
-            </div >
+            </div>
         )
     }
 }
