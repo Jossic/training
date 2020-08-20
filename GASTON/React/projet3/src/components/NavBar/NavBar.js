@@ -1,21 +1,35 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const NavBar = (props) => {
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav">
-                        <li className="nav-item active">
-                            <Link to="/" exact className="nav-link">Accueil</Link>
+                    <ul className="navbar-nav mr-auto">
+                        <li className="nav-item">
+                            <NavLink
+                                to="/" exact
+                                className="nav-link"
+                                activeClassName="active activeAccueil"
+                                activeStyle={{
+                                    textDecoration: "underline"
+                                }}
+                            >Accueil</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link to="/pays" exact className="nav-link">Pays</Link>
+                            <NavLink
+                                to="/pays" exact
+                                className="nav-link"
+                                activeClassName="active activePays"
+                                activeStyle={{
+                                    textDecoration: "underline",
+                                    color: "black"
+                                }}
+                            >Pays</NavLink>
                         </li>
                     </ul>
                 </div>

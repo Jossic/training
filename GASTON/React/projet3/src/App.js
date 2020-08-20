@@ -5,6 +5,7 @@ import NavBar from './components/NavBar/NavBar';
 import UnPays from './containers/PaysManager/UnPays/UnPays';
 import Erreur from './components/Erreur/Erreur'
 import Erreur404 from './components/Erreur/Erreur404'
+import './App.css'
 
 function App() {
   return (
