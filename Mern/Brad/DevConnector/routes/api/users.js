@@ -71,7 +71,7 @@ router.post('/', [
 
         } catch (err) {
             console.log(err);
-            res.status(500)
+            res.status(500).send('Erreur serveur');
         }
     });
 
