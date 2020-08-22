@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://Jossic:Jossic@devconnector.amsut.mongodb.net/<dbname>?retryWrites=true&w=majority",
+    "jwtSecret": "mySupersEcreTtOkeN"
+}
