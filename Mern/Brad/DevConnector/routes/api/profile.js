@@ -6,6 +6,7 @@ const { body, validationResult } = require('express-validator');
 
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
+const { populate } = require('../../models/User');
 
 
 // @route    GET api/profile/me
@@ -56,8 +57,8 @@ router.post('/', [
         } = req.body;
 
         // Construction d'un objet profile
-        const profileFields = {}
-        profileFields.user = req.body.id;
+        const profileFields = {};
+        profileFields.user = req.user.id;
         if (entreprise) profileFields.entreprise = entreprise;
         if (website) profileFields.website = website;
         if (adresse) profileFields.adresse = adresse;
@@ -99,5 +100,43 @@ router.post('/', [
             res.status(500).send('Erreur Serveur');
         }
     })
+
+
+
+// @route    GET api/profile
+// @desc     Get all profiles
+// @access   Public
+router.get('/', async (req, res) => {
+    try {
+        const profiles = await Profile.find().populate('user', ['nom', 'avatar']);
+        res.json(profiles);
+    } catch (e) {
+        console.log(e);
+        res.status(500).send('Erreur Serveur');
+    }
+
+});
+
+// @route    GET api/profile/user/:user_id
+// @desc     Get profile by user ID
+// @access   Public
+router.get('/user/:user_id', async (req, res) => {
+    try {
+        const profile = await Profile.findOne({ user: req.params.user_id }).populate('user', ['nom', 'avatar']);
+
+        if (!profile) return res.status(400).json({ msg: 'Profil non trouvé' });
+
+        res.json(profile);
+    } catch (e) {
+        console.log(e.message);
+        if (err.kind == 'ObjectId') {
+            return res.status(400).json({ msg: 'Profil non trouvé' });
+        }
+        res.status(500).send('Erreur Serveur');
+    }
+
+});
+
+
 
 module.exports = router;
