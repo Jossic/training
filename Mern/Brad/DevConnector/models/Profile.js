@@ -81,7 +81,7 @@ const ProfileSchema = new mongoose.Schema({
             },
             actuel: {
                 type: Boolean,
-                required: true,
+                default: false,
             },
             description: {
                 type: String,

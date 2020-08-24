@@ -220,5 +220,72 @@ router.delete('/experience/:exp_id', auth, async (req, res) => {
     }
 });
 
+// @route    PUT api/profile/formation
+// @desc     Add profile formation
+// @access   Private
+router.put('/formation', [auth, [
+    body('etablissement', 'L\'établissement est recquis').not().isEmpty(),
+    body('niveau', 'Le niveau est recquis').not().isEmpty(),
+    body('domaine', 'Le domaine est recquis').not().isEmpty(),
+    body('de', 'La date de début est requise').not().isEmpty(),
+
+]], async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+    const {
+        etablissement,
+        niveau,
+        domaine,
+        de,
+        a,
+        actuel,
+        description
+    } = req.body;
+
+    const newFormation = {
+        etablissement,
+        niveau,
+        domaine,
+        de,
+        a,
+        actuel,
+        description
+    }
+
+    try {
+        const profile = await Profile.findOne({ user: req.user.id });
+        profile.formation.unshift(newFormation);
+
+        await profile.save();
+
+        res.json(profile);
+    } catch (e) {
+        console.log(e.message);
+        res.status(500).send('Erreur Serveur');
+    }
+})
+
+// @route    DELETE api/profile/formation/:formation_id
+// @desc     Delete profile formation
+// @access   Private
+router.delete('/formation/:formation_id', auth, async (req, res) => {
+    try {
+        const profile = await Profile.findOne({ user: req.user.id });
+
+        const removeIndex = profile.formation.map(item => item.id).indexOf(req.params.formation_id);
+
+        profile.formation.splice(removeIndex, 1);
+
+        await profile.save();
+
+        res.json(profile);
+    } catch (e) {
+        console.log(e.message);
+        res.status(500).send('Erreur Serveur');
+    }
+});
+
 
 module.exports = router;
