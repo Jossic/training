@@ -1,4 +1,6 @@
 {
     "mongoURI": "mongodb+srv://Jossic:Jossic@devconnector.amsut.mongodb.net/<dbname>?retryWrites=true&w=majority",
-    "jwtSecret": "mySupersEcreTtOkeN"
+    "jwtSecret": "mySupersEcreTtOkeN",
+    "githubClientId": "1bba600d8148815f801e",
+    "githubSecret": "b1b0c8ab71d3b5cf970cd237715af46ec0d5587b"
 }
