@@ -1,33 +1,34 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Register = (props) => {
     const [formData, setFormData] = useState({
-        nom: '',
+        name: '',
         email: '',
         password: '',
         password2: '',
     });
 
-    const { nom, email, password, password2 } = formData;
+    const { name, email, password, password2 } = formData;
 
     const onChange = e =>
         setFormData({ ...formData, [e.target.name]: e.target.value });
 
-    const onSubmit = e => {
+    const onSubmit = async e => {
         e.preventDefault();
         if (password !== password2) {
             console.log('Les mot de passes ne correspondent pas !');
         } else {
-            console.log(formData);;
+            console.log('success');
         }
     };
     return (
         <>
-            <h1 className="large text-primary">Sign Up</h1>
-            <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
+            <h1 className="large text-primary">S'enregistrer</h1>
+            <p className="lead"><i className="fas fa-user"></i> Créer un compte</p>
             <form className="form" onSubmit={e => onSubmit(e)}>
                 <div className="form-group">
-                    <input type="text" placeholder="Nom" name="nom" value={nom} onChange={e => onChange(e)} required />
+                    <input type="text" placeholder="Nom" name="name" value={name} onChange={e => onChange(e)} required />
                 </div>
                 <div className="form-group">
                     <input type="email" placeholder="Adresse email" name="email" value={email} onChange={e => onChange(e)} />
@@ -54,7 +55,7 @@ const Register = (props) => {
                 <input type="submit" className="btn btn-primary" value="Register" />
             </form>
             <p className="my-1">
-                Already have an account? <a href="login.html">Sign In</a>
+                Vous avez déjà un compte? <Link to="/login">Se connecter</Link>
             </p>
         </>
     );
