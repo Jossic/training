@@ -24,7 +24,7 @@ const Register = ({ setAlert, register }) => {
         if (password !== password2) {
             setAlert('Les mot de passes ne correspondent pas !', 'danger');
         } else {
-            register();
+            register({ name, email, password });
         }
     };
     return (
