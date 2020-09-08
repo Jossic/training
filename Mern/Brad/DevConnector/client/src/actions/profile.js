@@ -4,7 +4,9 @@ import { setAlert } from './alert';
 import {
     GET_PROFILE,
     UPDATE_PROFILE,
-    PROFILE_ERROR
+    PROFILE_ERROR,
+    DELETE_ACCOUNT,
+    CLEAR_PROFILE,
 } from './types';
 
 // Récupérer le profil en cours
@@ -127,4 +129,65 @@ export const addEducation = (formData, history) => async dispatch => {
             payload: { msg: e.response.statusText, status: e.response.status }
         });
     }
+};
+
+
+// Delete experience
+export const deleteExperience = id => async dispatch => {
+    try {
+        const res = await axios.delete(`/api/profile/experience/${id}`);
+
+        dispatch({
+            type: UPDATE_PROFILE,
+            payload: res.data
+        });
+
+        dispatch(setAlert('Cette experience a bien été supprimée', 'success'));
+    } catch (e) {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: e.response.statusText, status: e.response.status }
+        });
+    }
+};
+
+// Delete formation
+export const deleteEducation = id => async dispatch => {
+    try {
+        const res = await axios.delete(`/api/profile/formation/${id}`);
+
+        dispatch({
+            type: UPDATE_PROFILE,
+            payload: res.data
+        });
+
+        dispatch(setAlert('Cette formation a bien été supprimée', 'success'));
+    } catch (e) {
+        dispatch({
+            type: PROFILE_ERROR,
+            payload: { msg: e.response.statusText, status: e.response.status }
+        });
+    }
+};
+
+
+// Supprimer compte et profil
+export const deleteAccount = () => async dispatch => {
+
+    if (window.confirm('Etes-vous sûr ? (Cette opération est irréversible)')) {
+        try {
+            const res = await axios.delete(`/api/profile`);
+
+            dispatch({ type: CLEAR_PROFILE });
+            dispatch({ type: DELETE_ACCOUNT });
+
+            dispatch(setAlert('Votre compte a bien été supprimé'));
+        } catch (e) {
+            dispatch({
+                type: PROFILE_ERROR,
+                payload: { msg: e.response.statusText, status: e.response.status }
+            });
+        }
+    }
+
 };
