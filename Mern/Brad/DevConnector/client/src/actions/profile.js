@@ -50,7 +50,6 @@ export const getProfiles = () => async dispatch => {
 
 // Récupérer un profil via son id
 export const getProfileById = (userId) => async dispatch => {
-
     try {
         const res = await axios.get(`/api/profile/user/${userId}`);
 
@@ -234,7 +233,7 @@ export const deleteAccount = () => async dispatch => {
 
     if (window.confirm('Etes-vous sûr ? (Cette opération est irréversible)')) {
         try {
-            const res = await axios.delete(`/api/profile`);
+            await axios.delete(`/api/profile`);
 
             dispatch({ type: CLEAR_PROFILE });
             dispatch({ type: DELETE_ACCOUNT });
