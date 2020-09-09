@@ -3,11 +3,11 @@ import { setAlert } from './alert';
 
 import {
     GET_PROFILE,
+    GET_PROFILES,
     UPDATE_PROFILE,
     PROFILE_ERROR,
     DELETE_ACCOUNT,
     CLEAR_PROFILE,
-    GET_PROFILES,
     GET_REPOS,
 } from './types';
 
