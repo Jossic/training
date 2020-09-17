@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Navbar from './components/layout/Navbar';
+import UserItem from './components/layout/users/UserItem';
 
 class App extends Component {
 
@@ -11,7 +12,9 @@ class App extends Component {
     return (
       <>
         <Navbar />
-        <h2>Hello</h2>
+        <UserItem />
+        <UserItem />
+        <UserItem />
       </>
     );
   }
