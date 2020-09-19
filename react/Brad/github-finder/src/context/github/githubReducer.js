@@ -38,8 +38,6 @@ export default (state, action) => {
                 ...state,
                 loading: true
             }
-            break;
-
         default:
             return state;
     }
