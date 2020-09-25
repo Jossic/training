@@ -1,10 +1,23 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import AlertContext from '../../context/alert/alertContext'
+import AuthContext from '../../context/auth/authContext'
+
 
 const Register = () => {
     const alertContext = useContext(AlertContext);
+    const authContext = useContext(AuthContext);
 
     const { setAlert } = alertContext;
+
+    const { register, error, clearErrors } = authContext;
+
+    useEffect(() => {
+        if (error === 'Cet utilisateur existe déjà') {
+            setAlert(error, 'danger');
+            clearErrors();
+        }
+
+    }, [error])
 
     const [user, setUser] = useState({
         name: '',
@@ -25,10 +38,13 @@ const Register = () => {
             setAlert('Les mots de passes ne correspondent pas', 'danger')
         }
         else {
-            console.log('success');
+            register({
+                name,
+                email,
+                password
+            });
         }
-
-    }
+    };
 
     return (
         <div className='form-container'>
