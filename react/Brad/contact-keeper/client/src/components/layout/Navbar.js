@@ -11,6 +11,8 @@ const Navbar = ({ title, icon }) => {
             <ul>
                 <li><Link to='/'>Accueil</Link></li>
                 <li><Link to='/about'>A propos</Link></li>
+                <li><Link to='/register'>Créer un compte</Link></li>
+                <li><Link to='/login'>Se connecter</Link></li>
             </ul>
         </div>
     )
