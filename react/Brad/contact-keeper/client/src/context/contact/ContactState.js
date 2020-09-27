@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react'
-import { stringify, v4 as uuidv4 } from 'uuid';
+import axios from 'axios'
 import ContactContext from './contactContext'
 import contactReducer from './contacReducer'
 import {
@@ -10,43 +10,39 @@ import {
     UPDATE_CONTACT,
     FILTER_CONTACTS,
     CLEAR_FILTER,
+    CONTACT_ERROR
 } from "../types";
 
 const ContactState = props => {
     const initialState = {
-        contacts: [
-            {
-                id: 1,
-                name: 'Jossic LAPIERRE',
-                email: 'jossic.lapierre@gmail.com',
-                phone: '06 13 38 56 55',
-                type: 'personal'
-            },
-            {
-                id: 2,
-                name: 'Pauline LAPIERRE',
-                email: 'pauline.lapierre@gmail.com',
-                phone: '06 13 38 57 55',
-                type: 'personal'
-            },
-            {
-                id: 3,
-                name: 'Harvey LAPIERRE',
-                email: 'havey.lapierre@gmail.com',
-                phone: '06 13 38 58 55',
-                type: 'personal'
-            },
-        ],
+        contacts: [],
         current: null,
-        filtered: null
+        filtered: null,
+        error: null
     };
 
     const [state, dispatch] = useReducer(contactReducer, initialState);
 
     // Add contact
-    const addContact = (contact) => {
-        contact.id = uuidv4();
-        dispatch({ type: ADD_CONTACT, payload: contact });
+    const addContact = async (contact) => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        try {
+            const res = await axios.post('/api/contacts', contact, config);
+
+            dispatch({ type: ADD_CONTACT, payload: res.data });
+        } catch (e) {
+            dispatch({
+                type: CONTACT_ERROR,
+                payload: e.response.msg
+            })
+        }
+
+
     }
 
     // Delete contact
@@ -84,6 +80,7 @@ const ContactState = props => {
                 contacts: state.contacts,
                 current: state.current,
                 filtered: state.filtered,
+                error: state.error,
                 addContact,
                 deleteContact,
                 setCurrent,
