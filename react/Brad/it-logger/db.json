@@ -1,32 +1,18 @@
 {
   "logs": [
     {
-      "id": 1,
-      "message": "Changed network card in server 007555",
+      "message": "grgrg",
       "attention": true,
-      "tech": "John 3",
-      "date": "2020-10-04T07:49:53.888Z"
-    },
-    {
-      "id": 2,
-      "message": "Fixed hard drive on workstation 002",
-      "attention": false,
       "tech": "John Doe",
-      "date": "2019-05-31T16:18:04.245Z"
+      "date": "2020-10-04T20:35:00.186Z",
+      "id": 1
     },
     {
-      "id": 3,
-      "message": "1122 wireless down",
+      "message": "hjtjy",
       "attention": false,
-      "tech": "John 2",
-      "date": "2020-10-04T07:49:44.917Z"
-    },
-    {
-      "id": 4,
-      "message": "Workstation 026 is up and running",
-      "attention": false,
-      "tech": "Sara Wilson",
-      "date": "2019-05-31T19:57:35.544Z"
+      "tech": "Jossic Lapierre",
+      "date": "2020-10-04T20:35:13.748Z",
+      "id": 2
     }
   ],
   "techs": [
@@ -44,11 +30,6 @@
       "id": 3,
       "firstName": "Sara",
       "lastName": "Wilson"
-    },
-    {
-      "prenom": "Jossic",
-      "nom": "Lapierre",
-      "id": 4
     },
     {
       "firstName": "Jossic",
