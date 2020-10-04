@@ -44,6 +44,21 @@
       "id": 3,
       "firstName": "Sara",
       "lastName": "Wilson"
+    },
+    {
+      "prenom": "Jossic",
+      "nom": "Lapierre",
+      "id": 4
+    },
+    {
+      "firstName": "Jossic",
+      "lastName": "Lapierre",
+      "id": 5
+    },
+    {
+      "firstName": "Harvey",
+      "lastName": "Lapierre",
+      "id": 6
     }
   ]
 }
