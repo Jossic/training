@@ -16,6 +16,7 @@
 
 // Variable for store the correct random number 
 const correctNumber = getRandomNumber();
+console.log(correctNumber);
 
 
 window.onload = function () {
@@ -26,10 +27,16 @@ window.onload = function () {
 /**
  * Functionality for playing the whole game
  */
-function playGame() {
+const playGame = () => {
   // *CODE GOES BELOW HERE *
   const numberGuess = document.querySelector('#number-guess').value;
-  console.log(numberGuess);
+  if (numberGuess > correctNumber) {
+    console.log("Trop haut");
+  } else if (numberGuess < correctNumber) {
+    console.log("Trop bas");
+  } else {
+    console.log("Parfait");
+  }
 }
 
 
@@ -38,13 +45,7 @@ function playGame() {
  * HINT: Use if, else if, else statement 
  */
 const displayResult = (num) => {
-  if (numberGuess > correctNumber) {
-    console.log("Trop haut");
-  } else if (numberGuess < correctNumber) {
-    console.log("Trop bas");
-  } else {
-    console.log("Parfait");
-  }
+
 }
 // *CODE GOES BELOW HERE *
 
