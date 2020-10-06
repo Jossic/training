@@ -13,8 +13,9 @@
 
 // Variable to store the list of guesses 
 
+
 // Variable for store the correct random number 
-const correctNumber = Math.random() * (100 - 1) + 1;
+const correctNumber = getRandomNumber();
 
 
 window.onload = function () {
@@ -70,6 +71,7 @@ function resetResultContent() {
  */
 function getRandomNumber() {
   // *CODE GOES BELOW HERE *
+  return Math.floor(Math.random() * (100 - 1) + 1);
 }
 
 /**
