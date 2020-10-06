@@ -30,13 +30,7 @@ window.onload = function () {
 const playGame = () => {
   // *CODE GOES BELOW HERE *
   const numberGuess = document.querySelector('#number-guess').value;
-  if (numberGuess > correctNumber) {
-    console.log("Trop haut");
-  } else if (numberGuess < correctNumber) {
-    console.log("Trop bas");
-  } else {
-    console.log("Parfait");
-  }
+  displayResult(numberGuess);
 }
 
 
@@ -45,7 +39,13 @@ const playGame = () => {
  * HINT: Use if, else if, else statement 
  */
 const displayResult = (num) => {
-
+  if (num > correctNumber) {
+    console.log("Trop haut");
+  } else if (num < correctNumber) {
+    console.log("Trop bas");
+  } else {
+    console.log("Parfait");
+  }
 }
 // *CODE GOES BELOW HERE *
 
