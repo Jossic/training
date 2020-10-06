@@ -12,10 +12,10 @@
  */
 
 // Variable to store the list of guesses 
-const guesses = [];
+let guesses = [];
 
 // Variable for store the correct random number 
-const correctNumber = getRandomNumber();
+let correctNumber = getRandomNumber();
 console.log(correctNumber);
 
 
@@ -59,6 +59,10 @@ const displayResult = (num) => {
  */
 function initGame() {
   // *CODE GOES BELOW HERE *
+  correctNumber = getRandomNumber();
+  resetResultContent();
+  guesses = [];
+  displayHistory();
 }
 
 /**
