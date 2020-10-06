@@ -40,11 +40,11 @@ const playGame = () => {
  */
 const displayResult = (num) => {
   if (num > correctNumber) {
-    console.log("Trop haut");
+    showNumberAbove();
   } else if (num < correctNumber) {
-    console.log("Trop bas");
+    showNumberBelow();
   } else {
-    console.log("Parfait");
+    showYouWon();
   }
 }
 // *CODE GOES BELOW HERE *
@@ -128,7 +128,7 @@ function showYouWon() {
    * HINT: Use the 'won' and text parameters 
    */
   // *CODE GOES BELOW HERE *
-
+  const dialog = getDialog("won", text);
   document.getElementById("result").innerHTML = dialog;
 }
 
@@ -140,7 +140,7 @@ function showNumberAbove() {
    * HINT: Use the 'warning' and text parameters 
    */
   // *CODE GOES BELOW HERE *
-
+  const dialog = getDialog("warning", text);
   document.getElementById("result").innerHTML = dialog;
 }
 
@@ -152,6 +152,6 @@ function showNumberBelow() {
    * HINT: Use the 'warning' and text parameters 
    */
   // *CODE GOES BELOW HERE *
-
+  const dialog = getDialog("warning", text);
   document.getElementById("result").innerHTML = dialog;
 }
