@@ -12,7 +12,7 @@
  */
 
 // Variable to store the list of guesses 
-
+const guesses = [];
 
 // Variable for store the correct random number 
 const correctNumber = getRandomNumber();
@@ -31,6 +31,7 @@ const playGame = () => {
   // *CODE GOES BELOW HERE *
   const numberGuess = document.querySelector('#number-guess').value;
   displayResult(numberGuess);
+  saveGuessHistory(numberGuess);
 }
 
 
@@ -82,6 +83,8 @@ function getRandomNumber() {
  */
 function saveGuessHistory(guess) {
   // *CODE GOES BELOW HERE *
+  guesses.push(guess);
+  console.log(guesses);
 }
 
 /**
