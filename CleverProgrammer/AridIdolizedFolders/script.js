@@ -60,7 +60,7 @@ let movies = [
 
 window.onload = function () {
     // let sortedMovies = sortMoviesByRank(movies);
-    let sortedMovies = sortMoviesByAttr(movies, 'title');
+    let sortedMovies = sortMoviesByAttr(movies, 'rank');
     // Display Movies list
     displayMovies(sortedMovies);
 }
@@ -88,7 +88,7 @@ function displayMovies(movies) {
 /**
  * Sort movies by rank from greatest to smallest 
  * HINT: make sure you are comparing the right value in in if(...)
- * HINT: replace numbers with movies .
+ * HINT: replace movies with movies .
  */
 function sortMoviesByRank(movies) {
     // Code from previous sortBestRatingsFirst() function
@@ -121,17 +121,18 @@ function sortMoviesByAttr(movies, sortAttr) {
     for (let j = 0; j < movies.length - 1; j++) {
 
         let max_obj = movies[j];
-        let max_location = j;
+        let max = getMaxMovieObject(movies, j, sortAttr);
+        max_location = max.max_index;
 
         for (let i = j; i < movies.length; i++) {
             if (movies[i][sortAttr] > max_obj[sortAttr]) {
                 // Know max AND it's index (location)
                 max_obj = movies[i]
-                max_location = i
+                max = i
             }
         }
         // swap the first and the last
-        movies[max_location] = movies[j] // --> 10
+        movies[max] = movies[j] // --> 10
         movies[j] = max_obj
     }
 
@@ -145,12 +146,12 @@ function sortMoviesByAttr(movies, sortAttr) {
  */
 function getMaxMovieObject(movies, start, sortAttr) {
     // Code from previous findMaxHelper() function
-    let maximum = numbers[start];
+    let maximum = movies[start];
     let max_location = start
 
-    for (let i = start; i < numbers.length; i++) {
-        if (numbers[i] > maximum) {
-            maximum = numbers[i]
+    for (let i = start; i < movies.length; i++) {
+        if (movies[i][sortAttr] > maximum[sortAttr]) {
+            maximum = movies[i]
             max_location = i
         }
     }
