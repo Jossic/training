@@ -19,9 +19,12 @@
         <button id="bold" onclick="makeBold(this)" type="button" class="btn btn-light">Bolb</button>
         <button id="italic" onclick="makeItalic(this)" type="button" class="btn btn-light">Italic</button>
         <button id="underline" onclick="makeUnderline(this)" type="button" class="btn btn-light">Underline</button>
-        <button id="left-align" type="button" class="align btn btn-light"><i class="fas fa-align-left"></i></button>
-        <button id="center-align" type="button" class="align btn btn-light"><i class="fas fa-align-center"></i></button>
-        <button id="right-align" type="button" class="align btn btn-light"><i class="fas fa-align-right"></i></button>
+        <button id="left-align" onclick="alignText(this, 'left')" type="button" class="align btn btn-light"><i
+            class="fas fa-align-left"></i></button>
+        <button id="center-align" onclick="alignText(this, 'center')" type="button" class="align btn btn-light"><i
+            class="fas fa-align-center"></i></button>
+        <button id="right-align" onclick="alignText(this, 'right')" type="button" class="align btn btn-light"><i
+            class="fas fa-align-right"></i></button>
       </div>
     </div>
     <hr />
